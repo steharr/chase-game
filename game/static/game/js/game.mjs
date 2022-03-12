@@ -43,9 +43,12 @@ $(document).on('keydown', function(e){
 
 function generateObstacles(){
     let cell;
-    for (let i = 0; i < 10; i++){
+    const ROWS = JSON.parse(document.getElementById('game-board-rows').textContent);
+    const COLS = JSON.parse(document.getElementById('game-board-cols').textContent);
+
+    for (let i = 0; i < ROWS; i++){
         for (let j = 0; j < 3; j ++){
-            let jj = Math.floor(Math.random()*10);
+            let jj = Math.floor(Math.random()*COLS);
             cell = $(`div[data-x="${jj}"][data-y="${i}"]`)
             cell.addClass('obstacle');
         }

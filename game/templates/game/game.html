@@ -10,6 +10,8 @@
     <div class="bo cell" data-y="{{row}}" data-x="{{col}}"></div>
     {% endfor %}
 </div>
+{{ rows_total|json_script:'game-board-rows' }}
+{{ cols_total|json_script:'game-board-cols' }}
 {% endfor %}
 
 {% endblock %}
