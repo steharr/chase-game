@@ -1,21 +1,25 @@
-import { Asset } from './Asset.js';
-import { Route } from './Route.js';
+import {
+    Asset
+} from './Asset.js';
+import {
+    Route
+} from './Route.js';
 
 export class Character extends Asset {
     constructor(name, color) {
         super(name, color);
         this.route = new Route();
     }
-    move(direction){
+    move(direction) {
         let newLoc;
-        if (this.location){
-            switch (direction){
+        if (this.location) {
+            switch (direction) {
                 case 'up':
                     newLoc = [
                         this.location[0], // x
                         this.location[1] + 1, // y
                     ];
-                    if (!this.obscured(newLoc)){
+                    if (!this.obscured(newLoc)) {
                         this.clear();
                         this.spawn(newLoc);
                         this.route.record(newLoc);
@@ -26,7 +30,7 @@ export class Character extends Asset {
                         this.location[0], // x
                         this.location[1] - 1, // y
                     ];
-                    if (!this.obscured(newLoc)){
+                    if (!this.obscured(newLoc)) {
                         this.clear();
                         this.spawn(newLoc);
                         this.route.record(newLoc);
@@ -37,7 +41,7 @@ export class Character extends Asset {
                         this.location[0] - 1, // x
                         this.location[1], // y
                     ];
-                    if (!this.obscured(newLoc)){
+                    if (!this.obscured(newLoc)) {
                         this.clear();
                         this.spawn(newLoc);
                         this.route.record(newLoc);
@@ -48,7 +52,7 @@ export class Character extends Asset {
                         this.location[0] + 1, // x
                         this.location[1], // y
                     ];
-                    if (!this.obscured(newLoc)){
+                    if (!this.obscured(newLoc)) {
                         this.clear();
                         this.spawn(newLoc);
                         this.route.record(newLoc);
@@ -59,19 +63,19 @@ export class Character extends Asset {
             return false;
         }
     }
-    obscured(pos){
+    obscured(pos) {
         let target = $(`div[data-x="${pos[0]}"][data-y="${pos[1]}"]`);
         // check if off board or in collision with asset
-        if (!target.length || target.hasAttr('id') || target.hasClass('obstacle')){
+        if (!target.length || target.hasAttr('id') || target.hasClass('obstacle')) {
             return true;
         } else {
             return false;
         }
     }
-    immediate(direction){
+    immediate(direction) {
         // gives coordinates of immediate location from given u, d, l, r
-        if (this.location){
-            switch (direction){
+        if (this.location) {
+            switch (direction) {
                 case 'up':
                     return [this.location[0], this.location[1] + 1]
                 case 'down':
@@ -86,6 +90,6 @@ export class Character extends Asset {
 }
 
 // https://stackoverflow.com/questions/1318076/jquery-hasattr-checking-to-see-if-there-is-an-attribute-on-an-element
-$.fn.hasAttr = function(name) {  
-return this.attr(name) !== undefined;
+$.fn.hasAttr = function (name) {
+    return this.attr(name) !== undefined;
 };
