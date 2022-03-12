@@ -11,3 +11,7 @@
     width: 2rem;
     height: 2rem;
 }
+
+.obstacle {
+    background-color: grey;
+}

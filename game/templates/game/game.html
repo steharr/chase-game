@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load range %}
 
 {% block content %}
 
 <!-- game board -->
-{% for row in rows|range %}
+{% for row in rows %}
 <div>
-    {% for col in cols|range %}
-    <div class="bo cell" data-x="{{row}}" data-y="{{col}}"></div>
+    {% for col in cols %}
+    <div class="bo cell" data-y="{{row}}" data-x="{{col}}"></div>
     {% endfor %}
 </div>
 {% endfor %}
