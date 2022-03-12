@@ -7,7 +7,7 @@ let cat = new Ai('cat', 'red', 'mouse','hard');
 let cheese = new Asset('cheese','yellow');
 
 $( document ).ready(function() {
-    generateObstacles();
+    // generateObstacles();
     mouse.spawn([5,5]);
     cat.spawn([8,8]);
     cheese.spawn([10,10]);

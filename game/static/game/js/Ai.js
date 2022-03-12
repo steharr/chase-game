@@ -9,7 +9,6 @@ export class Ai extends Character {
     chase(){
         // decision
         let dist = this.calcRouteToPrey()
-        let check;
         let move = this.makeInitialDecision(dist)
         if (!move[0]){
             this.makeSecondaryDecision(move[1]);
@@ -24,15 +23,17 @@ export class Ai extends Character {
         let y = Math.abs(this.location[1] - preyLocation[1]);
             if (x > y) {
                 let diff = this.location[0] - preyLocation[0];
-                return ['x', diff]
+                return ['x', diff];
             } else if (y > x) {
                 let diff = this.location[1] - preyLocation[1];
-                return ['y', diff]
+                return ['y', diff];
+            } else {
+                return ['both', 0];
             }
     }
     makeInitialDecision(dist) {
         let check;
-        // IF THE X AXIS IS FURTHER
+        // ** IF THE X AXIS IS FURTHER **
         if (dist[0] === 'x'){
             if (dist[1] < 0 ){
                 check = this.immediate('right');
@@ -57,8 +58,9 @@ export class Ai extends Character {
                     return [false, 'x'];
                 }
             }
-        // IF THE Y AXIS IS FURTHER 
-        } else if (dist[0] === 'y'){
+        };
+        // ** IF THE Y AXIS IS FURTHER **
+        if (dist[0] === 'y'){
             if (dist[1] < 0 ){
                 check = this.immediate('up');
                 // if the up is not obscured
@@ -82,7 +84,11 @@ export class Ai extends Character {
                     return [false, 'y'];
                 }
             }
-        }
+        };
+        // ** IF NEITHER AXIS IS FURTHER **
+        if (dist[0] === 'both'){
+            return [true, 'none'];
+        };
     }
     makeSecondaryDecision(axis){
     // find the location of their prey
