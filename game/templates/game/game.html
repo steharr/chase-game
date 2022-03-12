@@ -1,6 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load range %}
 
 {% block content %}
-<p class="test">Working!</p>
+
+<!-- game board -->
+{% for row in rows|range %}
+<div>
+    {% for col in cols|range %}
+    <div class="bo cell" data-x="{{row}}" data-y="{{col}}"></div>
+    {% endfor %}
+</div>
+{% endfor %}
+
+{% endblock %}
+
+<!-- game logic -->
+{% block postload_js %}
+{{ block.super }}
+<script type="module" src="{% static 'game/js/game.mjs' %}"></script>
 {% endblock %}

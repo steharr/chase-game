@@ -1,3 +1,13 @@
 .test {
     background-color: red !important;
 }
+
+.bo {
+    border: 1px solid black;
+}
+
+.cell {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+}
