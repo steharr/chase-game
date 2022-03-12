@@ -1,7 +1,9 @@
-import {Asset, UserCharacter, AiCharacter} from './Asset.js';
+import{ Asset } from './Asset.js';
+import{ Character } from './Character.js';
+import{ Ai } from './Ai.js';
 
-let mouse = new UserCharacter('mouse','blue');
-let cat = new AiCharacter('cat', 'red', 'mouse','hard');
+let mouse = new Character('mouse','blue');
+let cat = new Ai('cat', 'red', 'mouse','hard');
 let cheese = new Asset('cheese','yellow');
 
 $( document ).ready(function() {
