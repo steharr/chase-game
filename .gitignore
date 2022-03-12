@@ -1,0 +1,14 @@
+# python venv
+.venv
+
+# venv bash script
+venv.sh 
+
+# local dev env
+env.py
+
+# misc
+*.sqlite3
+*.pyc
+**__pycache__/
+.vscode
