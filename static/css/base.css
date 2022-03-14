@@ -10,8 +10,16 @@
     display: inline-block;
     width: 2rem;
     height: 2rem;
+    overflow: hidden;
+    text-align: center;
+    line-height: 2;
+    text-align: center;
 }
 
 .obstacle {
     background-color: grey;
+}
+
+.route {
+    background-color: orange;
 }
