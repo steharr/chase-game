@@ -29,8 +29,12 @@ export class Route {
         $(`div[data-x="${this.route[0][0]}"][data-y="${this.route[0][1]}"]`).css('background-color', this.color).html(`<i class="fa-solid fa-${this.route[0][2]}"></i>`);
 
         // highlight the route taken with arrows
-        for (let i = 1; i < this.route.length; i++) {
-            $(`div[data-x="${this.route[i][0]}"][data-y="${this.route[i][1]}"]`).css('background-color', this.color).html(`<i class="fa-solid fa-${this.route[i+1][2]}"></i>`);
+        try {
+            for (let i = 1; i < this.route.length; i++) {
+                $(`div[data-x="${this.route[i][0]}"][data-y="${this.route[i][1]}"]`).css('background-color', this.color).html(`<i class="fa-solid fa-${this.route[i+1][2]}"></i>`);
+            }
+        } catch (exc) {
+            console.log(exc);
         }
 
     }
