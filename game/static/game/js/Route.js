@@ -1,6 +1,7 @@
 export class Route {
-    constructor() {
+    constructor(color) {
         this.route = [];
+        this.color = color;
     }
     record(pos) {
         let icon;
@@ -24,13 +25,12 @@ export class Route {
         this.route.push(pos);
     }
     display() {
-
         // highlight the starting point with a circle
-        $(`div[data-x="${this.route[0][0]}"][data-y="${this.route[0][1]}"]`).addClass('route').html(`<i class="fa-solid fa-${this.route[0][2]}"></i>`);
+        $(`div[data-x="${this.route[0][0]}"][data-y="${this.route[0][1]}"]`).css('background-color', this.color).html(`<i class="fa-solid fa-${this.route[0][2]}"></i>`);
 
         // highlight the route taken with arrows
         for (let i = 1; i < this.route.length; i++) {
-            $(`div[data-x="${this.route[i][0]}"][data-y="${this.route[i][1]}"]`).addClass('route').html(`<i class="fa-solid fa-${this.route[i+1][2]}"></i>`);
+            $(`div[data-x="${this.route[i][0]}"][data-y="${this.route[i][1]}"]`).css('background-color', this.color).html(`<i class="fa-solid fa-${this.route[i+1][2]}"></i>`);
         }
 
     }

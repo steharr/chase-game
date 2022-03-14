@@ -1,12 +1,16 @@
 import {
     Character
 } from './Character.js';
+import {
+    Route
+} from './Route.js';
 
 export class Ai extends Character {
     constructor(name, color, target, difficulty) {
         super(name, color);
         this.target = target;
         this.difficulty = difficulty;
+        this.route = new Route(color);
     }
     chase() {
         // decision

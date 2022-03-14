@@ -8,7 +8,7 @@ import {
 export class Character extends Asset {
     constructor(name, color) {
         super(name, color);
-        this.route = new Route();
+        this.route = new Route(color);
     }
     move(direction) {
         let newLoc;

@@ -44,8 +44,8 @@ $(document).on('keydown', function (e) {
             break;
             // space
         case "Space":
+            cat.route.display();
             mouse.route.display();
-            break;
     }
 });
 
