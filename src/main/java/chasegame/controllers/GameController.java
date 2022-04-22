@@ -14,13 +14,15 @@ public class GameController {
 	private GameBoard gameBoard;
 
 	public void createGameBoard(Model model) {
-		this.gameBoard = new GameBoard(10, 10);
+		this.gameBoard = new GameBoard(15, 30);
 
 		int[] gameRows = new int[this.gameBoard.getRows()];
 		int[] gameColumns = new int[this.gameBoard.getColumns()];
 
 		model.addAttribute("rows", gameRows);
 		model.addAttribute("columns", gameColumns);
+		model.addAttribute("rowstotal", 15);
+		model.addAttribute("columnstotal", 30);
 	}
 
 	@GetMapping
