@@ -7,12 +7,16 @@ import {
 import {
     Ai
 } from './Ai.js';
+import {
+    Orchestrator
+} from './Orchestrator.js';
 
 let mouse = new Character('mouse', 'blue');
 let cat = new Ai('cat', 'red', 'mouse', 'hard');
 let cat2 = new Ai('cat2', 'green', 'mouse', 'hard');
 let cat3 = new Ai('cat3', 'purple', 'mouse', 'hard');
 let cheese = new Asset('cheese', 'yellow');
+let orchestrator = new Orchestrator();
 
 $(document).ready(function () {
     generateObstacles();
@@ -29,35 +33,28 @@ $(document).on('keydown', function (e) {
         // up
         case "ArrowUp":
             mouse.move('up');
-            cat.chase();
-            cat2.chase();
-            cat3.chase();
+            orchestrator.orchestrate([cat, cat2, cat3]);
             break;
             // down
         case "ArrowDown":
             mouse.move('down');
-            cat.chase();
-            cat2.chase();
-            cat3.chase();
+            orchestrator.orchestrate([cat, cat2, cat3]);
             break;
             // left
         case "ArrowLeft":
             mouse.move('left');
-            cat.chase();
-            cat2.chase();
-            cat3.chase();
+            orchestrator.orchestrate([cat, cat2, cat3]);
             break;
             // right
         case "ArrowRight":
             mouse.move('right');
-            cat.chase();
-            cat2.chase();
-            cat3.chase();
+            orchestrator.orchestrate([cat, cat2, cat3]);
             break;
             // space
         case "Space":
             cat.route.display();
             mouse.route.display();
+            break;
     }
 });
 
