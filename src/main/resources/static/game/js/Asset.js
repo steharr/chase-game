@@ -22,7 +22,7 @@ export class Asset {
     spawn(pos) {
         let target = $(`div[data-x="${pos[0]}"][data-y="${pos[1]}"]`)
         this.location = [pos[0], pos[1]];
-        target.attr('id', this.name).css('background-color', this.color);
+        target.attr('class', this.name).css('background-color', this.color);
         return this.location;
     }
     clear() {

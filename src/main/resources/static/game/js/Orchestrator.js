@@ -9,4 +9,10 @@ export class Orchestrator {
             enemy.chase();
         });
     }
+
+    extractGameState() {
+
+        // $(".cell").forEach()
+
+    }
 }

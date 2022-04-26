@@ -19,18 +19,17 @@
 
 <body>
 
-	<div th:each="row, rowIter : ${rows}">
-		<div th:each="column, colIter: ${columns}" class="bo cell"
-			th:attr="
-			data-y=${rowstotal-rowIter.index},
-			 data-x=${colIter.index}
-			 ">
-			 </div>
-	</div>
 
+
+	<div th:each="row : ${gameBoard.gameBoardRows}">
+		<div th:each="cell : ${row}"
+			th:attr="data-x=${cell.coordinates.y}, data-y=${cell.coordinates.x}"
+			class="bo cell"></div>
+	</div>
+	
 	<script th:inline="javascript">
-		const ROWS = /*[[${rowstotal}]]*/5;
-		const COLS = /*[[${columnstotal}]]*/5;
+		const ROWS = /*[[${gameBoard.totalRows}]]*/5;
+		const COLS = /*[[${gameBoard.totalColumns}]]*/5;
 	</script>
 
 
