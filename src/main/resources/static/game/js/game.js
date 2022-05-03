@@ -15,9 +15,9 @@ import {
 } from './GameAssets.js';
 
 let mouse = new Character('mouse', 'blue');
-let cat = new Ai('cat', 'red', 'mouse', 'hard');
-let cat2 = new Ai('cat2', 'green', 'mouse', 'hard');
-let cat3 = new Ai('cat3', 'purple', 'mouse', 'hard');
+let cat = new Ai('cat', 'red', 'hard');
+let cat2 = new Ai('cat2', 'green', 'hard');
+let cat3 = new Ai('cat3', 'purple', 'hard');
 let cheese = new Asset('cheese', 'yellow');
 let orchestrator = new Orchestrator();
 let gameAssets = new GameAssets();
@@ -25,16 +25,26 @@ let enemies = [cat, cat2, cat3];
 
 $(document).ready(function () {
     generateObstacles();
+
+    // *** User ***
     mouse.id = gameAssets.generateUniqueAssetId();
     mouse.spawn([5, 5]);
+
+    // *** User ***
     cat.id = gameAssets.generateUniqueAssetId();
     cat.spawn([8, 8]);
+    cat.target = mouse.id;
     cat2.id = gameAssets.generateUniqueAssetId();
     cat2.spawn([2, 12]);
+    cat2.target = mouse.id;
     cat3.id = gameAssets.generateUniqueAssetId();
     cat3.spawn([20, 14]);
+    cat3.target = mouse.id;
+
+    // *** Goal ***
     cheese.id = gameAssets.generateUniqueAssetId();
     cheese.spawn([10, 10]);
+
 });
 
 $(document).on('keydown', function (e) {
