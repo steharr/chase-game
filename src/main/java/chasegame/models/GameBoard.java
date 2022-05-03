@@ -21,7 +21,7 @@ public class GameBoard {
 	private void addCoordinatesToGameBoard() {
 		for (int r = this.totalRows; r > 0; r--) {
 			List<GameBoardCell> gameBoardRow = new ArrayList<>();
-			for (int c = -1; c < this.totalColumns; c++) {
+			for (int c = 0; c < this.totalColumns; c++) {
 				GameBoardCell gameBoardCell = new GameBoardCell(r, c);
 				gameBoardRow.add(gameBoardCell);
 			}

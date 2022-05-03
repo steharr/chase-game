@@ -3,6 +3,7 @@ export class Asset {
         this.name = name;
         this.color = color;
         this.location = null;
+        this.id = null;
     }
     exists() {
         if ($(`#${this.name}`).length) {
@@ -22,7 +23,9 @@ export class Asset {
     spawn(pos) {
         let target = $(`div[data-x="${pos[0]}"][data-y="${pos[1]}"]`)
         this.location = [pos[0], pos[1]];
-        target.attr('class', this.name).css('background-color', this.color);
+        target.attr("id", this.id);
+        target.addClass(this.name);
+        target.css('background-color', this.color);
         return this.location;
     }
     clear() {

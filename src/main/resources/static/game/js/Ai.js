@@ -22,7 +22,7 @@ export class Ai extends Character {
     }
     calcRouteToPrey() {
         // find the location of their prey
-        let prey = $(`#${this.target}`);
+        let prey = $(`.${this.target}`);
         let preyLocation = [prey.data('x'), prey.data('y')];
         // check distance to prey in both axis
         let x = Math.abs(this.location[0] - preyLocation[0]);
