@@ -16,12 +16,10 @@ import {
 
 let mouse = new Character('mouse', 'blue');
 let cat = new Ai('cat', 'red', 'hard');
-let cat2 = new Ai('cat2', 'green', 'hard');
-let cat3 = new Ai('cat3', 'purple', 'hard');
 let cheese = new Asset('cheese', 'yellow');
-let orchestrator = new Orchestrator();
+let orchestrator = new Orchestrator(mouse.name, cat.name, cheese.name);
 let gameAssets = new GameAssets();
-let enemies = [cat, cat2, cat3];
+let enemies = [cat];
 
 $(document).ready(function () {
     generateObstacles();
@@ -34,12 +32,6 @@ $(document).ready(function () {
     cat.id = gameAssets.generateUniqueAssetId();
     cat.spawn([8, 8]);
     cat.target = mouse.id;
-    cat2.id = gameAssets.generateUniqueAssetId();
-    cat2.spawn([2, 12]);
-    cat2.target = mouse.id;
-    cat3.id = gameAssets.generateUniqueAssetId();
-    cat3.spawn([20, 14]);
-    cat3.target = mouse.id;
 
     // *** Goal ***
     cheese.id = gameAssets.generateUniqueAssetId();

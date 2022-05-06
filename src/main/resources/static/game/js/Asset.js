@@ -30,6 +30,8 @@ export class Asset {
     }
     clear() {
         let target = $(`div[data-x="${this.location[0]}"][data-y="${this.location[1]}"]`)
-        target.removeAttr('id', this.name).removeAttr('style');
+        target.removeAttr('id', this.name)
+        target.removeAttr('style');
+        target.toggleClass(this.name);
     }
 };
