@@ -7,16 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import chasegame.models.GameBoard;
 
-@RequestMapping("/")
 @Controller
+@RequestMapping("/game")
 public class GameController {
 
 	private GameBoard gameBoard;
 
 	public void createGameBoard(Model model) {
-
 		this.gameBoard = new GameBoard(15, 30);
-
 		model.addAttribute(gameBoard);
 	}
 
