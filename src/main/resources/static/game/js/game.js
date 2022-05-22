@@ -37,6 +37,8 @@ $(document).ready(function () {
     cheese.id = gameAssets.generateUniqueAssetId();
     cheese.spawn([10, 10]);
 
+    // *** Timer ***
+    setInterval(gameTimer, 1000);
 });
 
 $(document).on('keydown', function (e) {
@@ -80,4 +82,28 @@ function generateObstacles() {
             cell.addClass('obstacle');
         }
     }
+}
+
+function gameTimer() {
+    let updatedTime;
+    let timerState = $("#timer").text();
+    if (timerState !== "") {
+        let time = timerState.split(":");
+        let mins = time[0];
+        let secs = time[1];
+
+        if (secs === "00") {
+            let updatedMins = parseInt(mins) - 1;
+            updatedTime = updatedMins + ":59";
+        } else {
+            let updatedSecs = parseInt(secs) - 1;
+            updatedTime = mins + ":" + updatedSecs;
+        }
+
+    } else {
+        updatedTime = "0:10";
+    }
+    $("#timer").text(
+        updatedTime
+    );
 }

@@ -31,10 +31,20 @@
 <body>
 
 
+	<div class="row">
+		<div class="col s12">
+			<div th:each="row : ${gameBoard.gameBoardRows}">
+				<div th:each="cell : ${row}" th:attr="data-x=${cell.coordinates.y}, data-y=${cell.coordinates.x}"
+					class="bo cell"></div>
+			</div>
+		</div>
+	</div>
 
-	<div th:each="row : ${gameBoard.gameBoardRows}">
-		<div th:each="cell : ${row}" th:attr="data-x=${cell.coordinates.y}, data-y=${cell.coordinates.x}"
-			class="bo cell"></div>
+	<div class="row">
+		<div class="col s12">
+			<h3>Timer</h3>
+			<div id="timer"></div>
+		</div>
 	</div>
 
 	<script th:inline="javascript">
@@ -42,9 +52,7 @@
 		const COLS = /*[[${gameBoard.totalColumns}]]*/ 5;
 	</script>
 
-
 	<script type="module" th:src="@{game/js/game.js}"></script>
-
 
 </body>
 
