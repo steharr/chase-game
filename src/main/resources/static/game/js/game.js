@@ -16,14 +16,18 @@ import {
 import {
     Timer
 } from './Timer.js';
+import {
+    Score
+} from './Score.js';
 
 let mouse = new Character('mouse', 'blue');
 let cat = new Ai('cat', 'red', 'hard');
 let cheese = new Asset('cheese', 'yellow');
-let orchestrator = new Orchestrator(mouse.name, cat.name, cheese.name);
+let timer = new Timer("2:00");
 let gameAssets = new GameAssets();
 let enemies = [cat];
-let timer = new Timer("2:00");
+let scoreCalculator = new Score(mouse, enemies, timer)
+let orchestrator = new Orchestrator(mouse.name, cat.name, cheese.name, scoreCalculator);
 
 $(document).ready(function () {
 
@@ -77,6 +81,7 @@ $(document).on('keydown', function (e) {
             mouse.route.display();
             break;
     }
+
 });
 
 function generateObstacles() {

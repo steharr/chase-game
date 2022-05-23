@@ -2,6 +2,7 @@ export class Timer {
 
     constructor(initialTime) {
         this.initialTime = initialTime;
+        this.currentTime = initialTime;
     }
 
     initialize() {
@@ -26,16 +27,24 @@ export class Timer {
                 updatedTime = mins + ":" + updatedSecs;
             }
         } else {
-            updatedTime = "0:10";
+            updatedTime = this.initialTime;
         }
         $("#timer").text(
             updatedTime
         );
     }
 
+
     complete() {
         clearInterval(this.timerInterval);
         console.log("Game Finished");
+    }
+
+    getTime() {
+        this.currentTime = $("#timer").text();
+        let mins = this.currentTime !== "0:0" ? this.currentTime.split(":")[0] : "";
+        let secs = this.currentTime !== "0:0" ? this.currentTime.split(":")[1] : "";
+        return [parseInt(mins), parseInt(secs)];
     }
 
 }
