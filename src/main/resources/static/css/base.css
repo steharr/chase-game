@@ -23,3 +23,10 @@
 .route {
     background-color: orange;
 }
+.game-log{
+    height: 20rem;
+    max-height:20rem;
+    border: 1px solid grey;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}

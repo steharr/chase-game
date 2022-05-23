@@ -32,19 +32,42 @@ export class Orchestrator {
                 this.gameDetails.inProgress = false;
             }
         });
+        if (this.scoreCalculator.isEnemyNearby) {
+            let message = "Enemy is close!! Watch out ...";
+            this.updateGameLog(message);
+        }
         this.scoreCalculator.updateScore(!this.gameDetails.inProgress);
         this.gameDetails.score = this.scoreCalculator.getScore();
     }
 
     finishGame() {
         let message;
-        if (this.victorious) {
+        if (this.gameDetails.victorious) {
             message = `You Won!!! Well done ... your score was ${this.gameDetails.score}`;
-            this.gameDetails.messages.push(message);
         } else {
             message = `You Lost!!! Better luck next time ... your score was ${this.gameDetails.score}`;
-            this.gameDetails.messages.push(message);
         }
-        $('#messages').text(this.gameDetails.messages[0]);
+        this.updateGameLog(message);
+    }
+
+    updateGameLog(messageText) {
+        let timeStr = (new Date()).getHours() + ":" + (new Date()).getMinutes();
+        let messageInfo = {
+            message: messageText,
+            time: timeStr
+        }
+        this.gameDetails.messages.push(messageInfo);
+        $('#messages').prepend(`
+        <li class="collection-item">
+        <div class="row">
+            <div class="col s8">
+                <span class="left">${messageInfo.message}</span>
+            </div>
+            <div class="col s4">
+                <span class="right">${messageInfo.time}</span>
+            </div>
+	    </div>
+        </li>
+        `);
     }
 }
