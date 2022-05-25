@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import chasegame.data.UserRepository;
+import chasegame.models.User;
 
 @Component
 public class DataLoader implements ApplicationRunner {

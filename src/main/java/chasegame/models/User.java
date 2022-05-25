@@ -1,4 +1,4 @@
-package chasegame;
+package chasegame.models;
 
 import java.util.Arrays;
 import java.util.Collection;

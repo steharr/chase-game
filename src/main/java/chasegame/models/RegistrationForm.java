@@ -2,7 +2,6 @@ package chasegame.models;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import chasegame.User;
 import lombok.Data;
 
 @Data

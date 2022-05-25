@@ -44,4 +44,25 @@ export class Score {
         return this.total;
     }
 
+    postScore() {
+        let saveScore = this.total;
+        let postUrl = window.location.href.match(/^.*\//) + "score";
+        let token = $("meta[name='_csrf']").attr("content");
+        let header = $("meta[name='_csrf_header']").attr("content");
+        let data = {
+            score: saveScore,
+            date: new Date()
+        };
+
+        fetch(postUrl, {
+            method: "POST",
+            headers: {
+                [header]: token,
+                "charset": "UTF-8",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        }).then(res => console.log(res)).catch(err => console.log(err))
+    }
+
 }
