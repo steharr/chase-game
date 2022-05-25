@@ -17,7 +17,7 @@ import {
     Timer
 } from './Timer.js';
 import {
-    Score
+    ScoreManager
 } from './Score.js';
 
 let mouse = new Character('mouse', 'blue');
@@ -26,8 +26,8 @@ let cheese = new Asset('cheese', 'yellow');
 let timer = new Timer("2:00");
 let gameAssets = new GameAssets();
 let enemies = [cat];
-let scoreCalculator = new Score(mouse, enemies, timer)
-let orchestrator = new Orchestrator(mouse.name, cat.name, cheese.name, scoreCalculator);
+let scoreManager = new ScoreManager(mouse, enemies, timer)
+let orchestrator = new Orchestrator(mouse.name, cat.name, cheese.name, scoreManager);
 
 $(document).ready(function () {
 
@@ -79,10 +79,10 @@ $(document).on('keydown', function (e) {
         case "Space":
             // cat.route.display();
             // mouse.route.display();
-            scoreCalculator.postScore();
+            scoreManager.postScore();
             break;
         case "Enter":
-            scoreCalculator.getScores();
+            scoreManager.getScores();
             break;
     }
 

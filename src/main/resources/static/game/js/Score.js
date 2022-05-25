@@ -1,10 +1,22 @@
-export class Score {
+export class ScoreManager {
 
     constructor(user, enemies, timer) {
         this.user = user;
         this.enemies = enemies;
         this.timer = timer;
         this.total = 0;
+        this.headers = this.setupHttpHeaders();
+        this.scoreUrl = window.location.href.match(/^.*\//) + "score";
+    }
+
+    setupHttpHeaders() {
+        let token = $("meta[name='_csrf']").attr("content");
+        let header = $("meta[name='_csrf_header']").attr("content");
+        return {
+            [header]: token,
+            "charset": "UTF-8",
+            "Content-Type": "application/json"
+        }
     }
 
     updateScore(gameFinished = false) {
@@ -46,38 +58,21 @@ export class Score {
 
     postScore() {
         let saveScore = this.total;
-        let postUrl = window.location.href.match(/^.*\//) + "score";
-        let token = $("meta[name='_csrf']").attr("content");
-        let header = $("meta[name='_csrf_header']").attr("content");
         let data = {
             score: saveScore,
             date: new Date()
         };
-
-        fetch(postUrl, {
+        fetch(this.scoreUrl, {
             method: "POST",
-            headers: {
-                [header]: token,
-                "charset": "UTF-8",
-                "Content-Type": "application/json"
-            },
+            headers: this.headers,
             body: JSON.stringify(data)
         }).then(res => console.log(res)).catch(err => console.log(err))
     }
 
     getScores() {
-        let postUrl = window.location.href.match(/^.*\//) + "score";
-        let token = $("meta[name='_csrf']").attr("content");
-        let header = $("meta[name='_csrf_header']").attr("content");
-
-        fetch(postUrl, {
+        fetch(this.scoreUrl, {
             method: "GET",
-            headers: {
-                [header]: token,
-                "charset": "UTF-8",
-                "Content-Type": "application/json"
-            },
+            headers: this.headers,
         }).then(res => console.log(res)).catch(err => console.log(err))
     }
-
 }
