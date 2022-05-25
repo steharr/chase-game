@@ -81,6 +81,9 @@ $(document).on('keydown', function (e) {
             // mouse.route.display();
             scoreCalculator.postScore();
             break;
+        case "Enter":
+            scoreCalculator.getScores();
+            break;
     }
 
 });

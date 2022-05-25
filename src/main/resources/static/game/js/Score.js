@@ -65,4 +65,19 @@ export class Score {
         }).then(res => console.log(res)).catch(err => console.log(err))
     }
 
+    getScores() {
+        let postUrl = window.location.href.match(/^.*\//) + "score";
+        let token = $("meta[name='_csrf']").attr("content");
+        let header = $("meta[name='_csrf_header']").attr("content");
+
+        fetch(postUrl, {
+            method: "GET",
+            headers: {
+                [header]: token,
+                "charset": "UTF-8",
+                "Content-Type": "application/json"
+            },
+        }).then(res => console.log(res)).catch(err => console.log(err))
+    }
+
 }
