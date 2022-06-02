@@ -9,13 +9,14 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @AllArgsConstructor
 public class Score {
 
@@ -27,5 +28,7 @@ public class Score {
 	private Date date;
 
 	private Long score;
+
+	private String username;
 
 }

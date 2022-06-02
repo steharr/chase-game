@@ -18,7 +18,7 @@ import {
 } from './Timer.js';
 import {
     ScoreManager
-} from './Score.js';
+} from './ScoreManager.js';
 
 let mouse = new Character('mouse', 'blue');
 let cat = new Ai('cat', 'red', 'hard');

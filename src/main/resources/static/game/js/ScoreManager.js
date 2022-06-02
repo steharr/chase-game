@@ -70,9 +70,11 @@ export class ScoreManager {
     }
 
     getScores() {
+        let leaderboards;
         fetch(this.scoreUrl, {
             method: "GET",
             headers: this.headers,
-        }).then(res => console.log(res)).catch(err => console.log(err))
+        }).then(res => leaderboards = res).catch(err => console.log(err))
+        return leaderboards;
     }
 }
