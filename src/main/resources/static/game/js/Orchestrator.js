@@ -48,6 +48,10 @@ export class Orchestrator {
             message = `You Lost!!! Better luck next time ... your score was ${this.gameDetails.score}`;
         }
         this.updateGameLog(message);
+
+        $(document).ready(function () {
+            $('.modal').modal();
+        });
     }
 
     updateGameLog(messageText) {

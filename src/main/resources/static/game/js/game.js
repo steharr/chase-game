@@ -20,8 +20,8 @@ import {
     ScoreManager
 } from './ScoreManager.js';
 
-let mouse = new Character('mouse', 'blue');
-let cat = new Ai('cat', 'red', 'hard');
+let mouse = new Character('user', 'blue');
+let cat = new Ai('enemy', 'red', 'hard');
 let cheese = new Asset('cheese', 'yellow');
 let timer = new Timer("2:00");
 let gameAssets = new GameAssets();

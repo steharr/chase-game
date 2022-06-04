@@ -20,6 +20,7 @@ export class Character extends Asset {
                         this.location[1] + 1, // y
                     ];
                     if (!this.obscured(newLoc)) {
+                        this.setStatus("move-up");
                         this.clear();
                         this.spawn(newLoc);
                         this.route.record(newLoc);
@@ -31,6 +32,7 @@ export class Character extends Asset {
                         this.location[1] - 1, // y
                     ];
                     if (!this.obscured(newLoc)) {
+                        this.setStatus("move-down");
                         this.clear();
                         this.spawn(newLoc);
                         this.route.record(newLoc);
@@ -42,6 +44,7 @@ export class Character extends Asset {
                         this.location[1], // y
                     ];
                     if (!this.obscured(newLoc)) {
+                        this.setStatus("move-left");
                         this.clear();
                         this.spawn(newLoc);
                         this.route.record(newLoc);
@@ -53,6 +56,7 @@ export class Character extends Asset {
                         this.location[1], // y
                     ];
                     if (!this.obscured(newLoc)) {
+                        this.setStatus("move-right");
                         this.clear();
                         this.spawn(newLoc);
                         this.route.record(newLoc);

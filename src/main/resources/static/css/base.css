@@ -30,3 +30,44 @@
     overflow-y: scroll;
     overflow-x: hidden;
 }
+
+.user-stationary{
+    background-image: url("../media/gifs/man-stationary.gif");
+    background-position: center;
+}
+.user-move-right{
+    background-image: url("../media/gifs/man-move-right.gif");
+    background-position: center;
+}
+.user-move-left{
+    background-image: url("../media/gifs/man-move-left.gif");
+    background-position: center;
+}
+.user-move-down{
+    background-image: url("../media/gifs/man-move-down.gif");
+    background-position: center;
+}
+.user-move-up{
+    background-image: url("../media/gifs/man-move-up.gif");
+    background-position: center;
+}
+.enemy-stationary{
+    background-image: url("../media/gifs/enemy-stationary.gif");
+    background-position: center;
+}
+.enemy-move-right{
+    background-image: url("../media/gifs/enemy-move-right.gif");
+    background-position: center;
+}
+.enemy-move-left{
+    background-image: url("../media/gifs/enemy-move-left.gif");
+    background-position: center;
+}
+.enemy-move-down{
+    background-image: url("../media/gifs/enemy-move-down.gif");
+    background-position: center;
+}
+.enemy-move-up{
+    background-image: url("../media/gifs/enemy-move-up.gif");
+    background-position: center;
+}
