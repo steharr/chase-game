@@ -21,7 +21,7 @@ import {
 } from './ScoreManager.js';
 
 let mouse = new Character('user', 'blue');
-let cat = new Ai('enemy', 'red', 'hard');
+let cat = new Ai('enemy', 'red', 'easy');
 let cat2 = new Ai('enemy', 'red', 'hard');
 let cheese = new Asset('cheese', 'yellow');
 let timer = new Timer("2:00");

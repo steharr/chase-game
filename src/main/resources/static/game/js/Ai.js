@@ -6,10 +6,11 @@ import {
 } from './Route.js';
 
 export class Ai extends Character {
+
     constructor(name, color, difficulty) {
         super(name, color);
         this.target = null;
-        this.difficulty = difficulty;
+        this.difficulty = this.calcDifficultyMultiplier(difficulty);
         this.route = new Route(color);
     }
     chase() {
@@ -39,6 +40,12 @@ export class Ai extends Character {
     }
     makeInitialDecision(dist) {
         let check;
+
+        // abort move depending on difficulty
+        if (this.difficulty < Math.random()) {
+            return [true, 'none'];
+        }
+
         // ** IF THE X AXIS IS FURTHER **
         if (dist[0] === 'x') {
             if (dist[1] < 0) {
@@ -125,5 +132,13 @@ export class Ai extends Character {
                 }
                 break;
         }
+    }
+    calcDifficultyMultiplier(difficulty) {
+        const diffMap = {
+            "easy": 0.5,
+            "medium": 0.75,
+            "hard": 1,
+        };
+        return diffMap[difficulty];
     }
 }
