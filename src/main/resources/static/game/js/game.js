@@ -22,10 +22,11 @@ import {
 
 let mouse = new Character('user', 'blue');
 let cat = new Ai('enemy', 'red', 'hard');
+let cat2 = new Ai('enemy', 'red', 'hard');
 let cheese = new Asset('cheese', 'yellow');
 let timer = new Timer("2:00");
 let gameAssets = new GameAssets();
-let enemies = [cat];
+let enemies = [cat, cat2];
 let scoreManager = new ScoreManager(mouse, enemies, timer)
 let orchestrator = new Orchestrator(mouse.name, cat.name, cheese.name, scoreManager);
 
@@ -42,6 +43,10 @@ $(document).ready(function () {
     cat.id = gameAssets.generateUniqueAssetId();
     cat.spawn([8, 8]);
     cat.target = mouse.id;
+
+    cat2.id = gameAssets.generateUniqueAssetId();
+    cat2.spawn([15, 12]);
+    cat2.target = mouse.id;
 
     // *** Goal ***
     cheese.id = gameAssets.generateUniqueAssetId();
@@ -77,12 +82,11 @@ $(document).on('keydown', function (e) {
             break;
             // space
         case "Space":
-            // cat.route.display();
-            // mouse.route.display();
-            scoreManager.postScore();
+            cat.route.display();
+            mouse.route.display();
             break;
         case "Enter":
-            scoreManager.getScores();
+            location.reload();
             break;
     }
 

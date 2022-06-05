@@ -70,7 +70,7 @@ export class Character extends Asset {
     obscured(pos) {
         let target = $(`div[data-x="${pos[0]}"][data-y="${pos[1]}"]`);
         // check if off board or in collision with asset
-        if (!target.length || target.hasClass('obstacle')) {
+        if (!target.length || target.hasClass('obstacle') || target.hasClass('enemy')) {
             return true;
         } else {
             return false;
