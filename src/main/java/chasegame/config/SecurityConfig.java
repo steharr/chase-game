@@ -34,6 +34,10 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		return http.authorizeRequests().antMatchers("/", "/**").permitAll()
 
+				.and().csrf().ignoringAntMatchers("/h2-console/**")
+
+				.and().headers().frameOptions().sameOrigin()
+
 				.and().formLogin().loginPage("/login").defaultSuccessUrl("/game")
 
 				.and().build();
