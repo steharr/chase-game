@@ -82,8 +82,9 @@ $(document).on('keydown', function (e) {
             break;
             // space
         case "Space":
-            cat.route.display();
-            mouse.route.display();
+            // cat.route.display();
+            // mouse.route.display();
+            scoreManager.postScore();
             break;
         case "Enter":
             location.reload();

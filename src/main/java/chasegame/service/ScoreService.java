@@ -1,25 +1,28 @@
 package chasegame.service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import chasegame.data.ScoreRepository;
-import chasegame.info.ScoreInfo;
 import chasegame.models.Score;
+import chasegame.models.User;
 
 @Service
 public class ScoreService {
 
 	private ScoreRepository scoreRepository;
 
-	public ScoreService(ScoreRepository scoreRepository) {
+	private UserService userService;
+
+	public ScoreService(ScoreRepository scoreRepository, UserService userService) {
 		this.scoreRepository = scoreRepository;
+		this.userService = userService;
 	}
 
 	public void saveScore(Score score) {
+		User currentUser = userService.getCurrentUser();
+		score.setUsername(currentUser.getUsername());
 		scoreRepository.save(score);
 	}
 
@@ -28,8 +31,4 @@ public class ScoreService {
 		return scores;
 	}
 
-	private String convertDate(ScoreInfo scoreInfo) {
-		DateFormat df = new SimpleDateFormat("HH:mm:ss dd-MM-yyy");
-		return df.format(scoreInfo.getDate());
-	}
 }

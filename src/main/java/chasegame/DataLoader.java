@@ -31,7 +31,8 @@ public class DataLoader implements ApplicationRunner {
 	public void run(ApplicationArguments args) throws Exception {
 		User dev = new User("dev", passwordEncoder.encode("password"), "developer");
 		userRepository.save(dev);
-		scoreRepository.save(new Score(1L, new Date(), 200L, dev.getUsername()));
+
+		scoreRepository.save(new Score(3L, new Date(), 200L, dev.getUsername()));
 	}
 
 }
