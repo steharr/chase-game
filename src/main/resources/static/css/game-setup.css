@@ -1,0 +1,31 @@
+.game-setup-panel {
+    width: 90%;
+}
+
+.game-setup-label {
+    font-weight: 600;
+}
+
+.visual-select {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.option-enemy {
+    background-image: url("../media/gifs/enemy-move-right.gif");
+    background-position: center;
+    border: 1px solid black;
+    width: 2rem;
+    height: 2rem;
+    background-color: #a2d9a0;
+}
+
+.option-empty {
+    background-position: center;
+    border: 1px solid black;
+    width: 2rem;
+    height: 2rem;
+    background-color: #a2d9a0;
+}

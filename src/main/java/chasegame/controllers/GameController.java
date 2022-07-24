@@ -3,12 +3,12 @@ package chasegame.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import chasegame.models.GameBoard;
+import chasegame.models.GameSetup;
 
 @Controller
-@RequestMapping("/game")
 public class GameController {
 
 	private GameBoard gameBoard;
@@ -18,15 +18,20 @@ public class GameController {
 		model.addAttribute(gameBoard);
 	}
 
-	@GetMapping
+	@GetMapping("/game")
 	public String startGame(Model model) {
 		createGameBoard(model);
 		return "game";
 	}
 
 	@GetMapping("/setup")
-	public String setupGame(Model model) {
+	public String displaySetup(Model model) {
 		return "setup";
+	}
+
+	@PostMapping("/setup")
+	public void setupGame(GameSetup gameSetup) {
+
 	}
 
 }
