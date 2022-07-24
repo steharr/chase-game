@@ -24,4 +24,9 @@ public class GameController {
 		return "game";
 	}
 
+	@GetMapping("/setup")
+	public String setupGame(Model model) {
+		return "setup";
+	}
+
 }
