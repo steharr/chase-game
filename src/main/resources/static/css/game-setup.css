@@ -6,11 +6,13 @@
     font-weight: 600;
 }
 
-.visual-select {
+#visual-select-options {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 80%;
+}
+
+.option {
+    margin: 0 .5rem;
 }
 
 .option-enemy {
@@ -28,4 +30,9 @@
     width: 2rem;
     height: 2rem;
     background-color: #a2d9a0;
+}
+
+.arrow {
+    margin-left: .25rem;
+    margin-right: .25rem;
 }
