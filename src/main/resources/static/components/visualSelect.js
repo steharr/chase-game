@@ -1,6 +1,7 @@
-const possibleFilledOptions = 5;
+const possibleFilledOptions = GAME_SETUP.possibleEnemies;
 const filledOptionClass = 'option-enemy';
 const unfilledOptionClass = 'option-empty';
+
 
 document.addEventListener("DOMContentLoaded", setupVisualSelect);
 
