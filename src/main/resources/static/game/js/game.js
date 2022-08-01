@@ -19,10 +19,16 @@ import {
 import {
     ScoreManager
 } from './ScoreManager.js';
+import {
+    GameSetupConstants
+} from '../constants/GameSetupConstants.js';
 
 
+const difficulty = GameSetupConstants.difficulties[GAME_SETUP.difficulty];
+const obstacles = GameSetupConstants.obstacles[GAME_SETUP.obstacles];
 const enemies = generateEnemies(GAME_SETUP.enemies);
-let mouse = new Character('user', 'blue');
+
+let user = new Character('user', 'blue');
 
 let cheese = new Asset('cheese', 'yellow');
 let timer = new Timer("2:00");
@@ -34,18 +40,18 @@ let orchestrator;
 $(document).ready(function () {
 
     // *** Level ***
-    generateObstacles();
+    generateObstacles(obstacles);
 
     // *** User ***
-    mouse.id = gameAssets.generateUniqueAssetId();
-    mouse.spawn([5, 5]);
+    user.id = gameAssets.generateUniqueAssetId();
+    user.spawn([5, 5]);
 
     // *** Enemy ***
     let p = 8;
     for (let e of enemies) {
         e.id = gameAssets.generateUniqueAssetId();
         e.spawn([8, p]);
-        e.target = mouse.id;
+        e.target = user.id;
         p++
     }
 
@@ -54,8 +60,8 @@ $(document).ready(function () {
     cheese.spawn([10, 10]);
 
     // *** Game Setup ***
-    scoreManager = new ScoreManager(mouse, enemies, timer);
-    orchestrator = new Orchestrator(mouse.name, enemies[0].name, cheese.name, scoreManager);
+    scoreManager = new ScoreManager(user, enemies, timer);
+    orchestrator = new Orchestrator(user.name, enemies[0].name, cheese.name, scoreManager);
 
     // *** Timer ***
     timer.initialize();
@@ -66,28 +72,28 @@ $(document).on('keydown', function (e) {
     switch (key) {
         // up
         case "ArrowUp":
-            mouse.move('up');
+            user.move('up');
             orchestrator.orchestrate(enemies);
             break;
             // down
         case "ArrowDown":
-            mouse.move('down');
+            user.move('down');
             orchestrator.orchestrate(enemies);
             break;
             // left
         case "ArrowLeft":
-            mouse.move('left');
+            user.move('left');
             orchestrator.orchestrate(enemies);
             break;
             // right
         case "ArrowRight":
-            mouse.move('right');
+            user.move('right');
             orchestrator.orchestrate(enemies);
             break;
             // space
         case "Space":
             // cat.route.display();
-            // mouse.route.display();
+            // user.route.display();
             scoreManager.postScore();
             break;
         case "Enter":
@@ -97,16 +103,31 @@ $(document).on('keydown', function (e) {
 
 });
 
-function generateObstacles() {
-    let cell;
+function generateObstacles(desiredObstacles) {
 
-    for (let i = 0; i < ROWS; i++) {
-        for (let j = 0; j < 3; j++) {
-            let jj = Math.floor(Math.random() * COLS);
-            cell = $(`div[data-x="${jj}"][data-y="${i}"]`)
-            cell.addClass('obstacle');
-        }
+    let obstacleCount = 0;
+    let obstacleCells = [];
+
+    while (obstacleCount < desiredObstacles) {
+        let randomCell;
+        let isSameCell;
+
+        do {
+            randomCell = generateRandomCellReference();
+
+            isSameCell = (element) => {
+                return element[0] === randomCell.y && element[1] === randomCell.x;
+            }
+
+        } while (obstacleCells.some(isSameCell));
+
+
+        obstacleCells.push[randomCell];
+        const cell = $(`div[data-x="${randomCell.y}"][data-y="${randomCell.x}"]`);
+        cell.addClass('obstacle');
+        obstacleCount++;
     }
+
 }
 
 function generateEnemies(number) {
@@ -114,9 +135,18 @@ function generateEnemies(number) {
     let eList = [];
 
     for (let i = 0; i < number; i++) {
-        let e = new Ai('enemy', 'red', 'easy');
+        let e = new Ai('enemy', 'red', (i < Math.floor(number * 0.75)) ? difficulty : 'easy');
         eList.push(e);
     }
 
-    return eList
+    return eList;
+}
+
+function generateRandomCellReference() {
+    const randomRow = Math.floor(Math.random() * ROWS);
+    const randomCol = Math.floor(Math.random() * COLS);
+    return {
+        x: randomRow,
+        y: randomCol
+    };
 }
