@@ -5,12 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
 
     <!-- Custom CSS -->
     <link rel="stylesheet" th:href="@{css/base.css}">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" th:href="@{css/game-setup.css}">
+
+    <!-- jQuery -->
+    <script th:src="@{js/jquery-3.6.0.min.js}"></script>
 
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -33,82 +38,100 @@
         <div class="card mx-auto" style="width: 60%">
             <div class="card-body">
 
-                <form th:action="@{/setup}" th:object="${gameSetup}" method="post">
 
-                    <!-- Mode -->
-                    <div class="row">
-                        <div class="col-4">
-                            <p class="game-setup-label">Mode:</p>
-                        </div>
-                        <div class="col-8">
-                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                <input type="radio" class="btn-check" name="mode" value="chase" id="mode-chase"
-                                    autocomplete="off" checked>
-                                <label class="btn btn-outline-primary" for="mode-chase">Escape the Chase</label>
 
-                                <input type="radio" class="btn-check" name="mode" value="flag" id="mode-flag"
-                                    autocomplete="off">
-                                <label class="btn btn-outline-primary" for="mode-flag">Capture the Flag</label>
-                            </div>
+                <!-- Mode -->
+                <div class="row">
+                    <div class="col-4">
+                        <p class="game-setup-label">Mode:</p>
+                    </div>
+                    <div class="col-8">
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="mode" value="chase" id="mode-chase"
+                                autocomplete="off" checked>
+                            <label class="btn btn-outline-primary" for="mode-chase">Escape the Chase</label>
+
+                            <input type="radio" class="btn-check" name="mode" value="flag" id="mode-flag"
+                                autocomplete="off">
+                            <label class="btn btn-outline-primary" for="mode-flag">Capture the Flag</label>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Enemies -->
-                    <div class="row">
-                        <div class="col-4">
-                            <p class="game-setup-label">Enemies:</p>
-                        </div>
-                        <div class="col-8 d-flex justify-content-around">
-
-                            <div class="arrow">
-                                <button class="btn btn-secondary" type="button"
-                                    onclick="moveVisualSelect(0,'option-enemy','left')">
-                                    <i class="fa-solid fa-caret-left"></i>
-                                </button>
-                            </div>
-
-                            <div id="visual-select-options-0" name="enemies">
-                            </div>
-
-                            <div class="arrow">
-                                <button class="btn btn-secondary" type="button"
-                                    onclick="moveVisualSelect(0,'option-enemy','right')">
-                                    <i class="fa-solid fa-caret-right"></i>
-                                </button>
-                            </div>
-
-                        </div>
+                <!-- Enemies -->
+                <div class="row">
+                    <div class="col-4">
+                        <p class="game-setup-label">Enemies:</p>
                     </div>
+                    <div class="col-8 d-flex justify-content-between">
 
-                    <!-- Difficulty -->
-                    <div class="row">
-                        <div class="col-4">
-                            <p class="game-setup-label">Difficulty:</p>
+                        <div class="arrow">
+                            <button class="btn btn-secondary" type="button"
+                                onclick="moveVisualSelect(0,'option-enemy','left')">
+                                <i class="fa-solid fa-caret-left"></i>
+                            </button>
                         </div>
-                        <div class="col-8 d-flex justify-content-around">
 
-                            <div class="arrow">
-                                <button class="btn btn-secondary" type="button"
-                                    onclick="moveVisualSelect(1,'option-difficulty','left')">
-                                    <i class="fa-solid fa-caret-left"></i>
-                                </button>
-                            </div>
-
-                            <div id="visual-select-options-1" name="difficulty">
-                            </div>
-
-                            <div class="arrow">
-                                <button class="btn btn-secondary" type="button"
-                                    onclick="moveVisualSelect(1,'option-difficulty','right')">
-                                    <i class="fa-solid fa-caret-right"></i>
-                                </button>
-                            </div>
-
+                        <div id="visual-select-options-0" name="enemies">
                         </div>
+
+                        <div class="arrow">
+                            <button class="btn btn-secondary" type="button"
+                                onclick="moveVisualSelect(0,'option-enemy','right')">
+                                <i class="fa-solid fa-caret-right"></i>
+                            </button>
+                        </div>
+
                     </div>
+                </div>
 
-                    <button type="submit" class="btn btn-primary mb-3">Confirm</button>
-                </form>
+                <!-- Difficulty -->
+                <div class="row">
+                    <div class="col-4">
+                        <p class="game-setup-label">Difficulty:</p>
+                    </div>
+                    <div class="col-8 d-flex justify-content-between">
+
+                        <div class="arrow">
+                            <button class="btn btn-secondary" type="button"
+                                onclick="moveVisualSelect(1,'option-difficulty','left')">
+                                <i class="fa-solid fa-caret-left"></i>
+                            </button>
+                        </div>
+
+                        <div id="visual-select-options-1" name="difficulty">
+                        </div>
+
+                        <div class="arrow">
+                            <button class="btn btn-secondary" type="button"
+                                onclick="moveVisualSelect(1,'option-difficulty','right')">
+                                <i class="fa-solid fa-caret-right"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Difficulty -->
+                <div class="row">
+                    <div class="col-4">
+                        <p class="game-setup-label">Obstacles:</p>
+                    </div>
+                    <div class="col-8 d-flex justify-content-around">
+
+                        <select class="form-select" aria-label="Default select example" id="obstacles"
+                            style="width: 60%">
+                            <option value="little" selected>Little</option>
+                            <option value="many">Many</option>
+                            <option value="lots">Lots</option>
+                        </select>
+
+                    </div>
+                </div>
+
+
+
+                <button type="submit" class="btn btn-primary mb-3" onclick="postGameSetup()">Confirm</button>
             </div>
         </div>
 
@@ -121,10 +144,11 @@
 
     <!-- injected variables -->
     <script th:inline="javascript">
-        const GAME_SETUP = /*[[${gameSetup}]]*/ {};
+        const GAME_TYPE = /*[[${gameType}]]*/ {};
     </script>
 
     <script type="text/javascript" th:src="@{components/visualSelect.js}"></script>
+    <script type="text/javascript" th:src="@{components/gameSetupForm.js}"></script>
 </body>
 
 </html>

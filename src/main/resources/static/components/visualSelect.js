@@ -1,6 +1,6 @@
 // const possibleFilledOptionsList[containerNumber] = GAME_SETUP.possibleEnemies;
 const visualSelectClassesList = ['option-enemy', 'option-difficulty'];
-const possibleFilledOptionsList = [GAME_SETUP.possibleEnemies, 3];
+const possibleFilledOptionsList = [GAME_TYPE.possibleEnemies, 3];
 const unfilledOptionClass = 'option-empty';
 
 

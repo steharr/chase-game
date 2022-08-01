@@ -1,6 +1,6 @@
 package chasegame.controllers;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import chasegame.data.GameSetupRepository;
+import chasegame.data.GameTypeRepository;
 import chasegame.models.GameBoard;
 import chasegame.models.GameSetup;
+import chasegame.models.GameType;
 
 @Controller
 public class GameController {
@@ -19,7 +21,10 @@ public class GameController {
 	private GameBoard gameBoard;
 
 	@Autowired
-	private GameSetupRepository gameSetupRepository;
+	private GameTypeRepository gameTypeRepo;
+
+	@Autowired
+	private GameSetupRepository gameSetupRepo;
 
 	public void createGameBoard(Model model) {
 		this.gameBoard = new GameBoard(15, 30);
@@ -34,16 +39,17 @@ public class GameController {
 
 	@GetMapping("/setup")
 	public String displaySetup(Model model) {
-		Optional<GameSetup> gameSetup = gameSetupRepository.findById(1L);
-		if (gameSetup.isPresent()) {
-			model.addAttribute("gameSetup", gameSetup.get());
-		}
+		List<GameType> gameTypes = gameTypeRepo.findAll();
+
+		GameType selectedGameType = gameTypeRepo.findBySelectedGameType();
+		model.addAttribute("gameType", selectedGameType);
+
 		return "setup";
 	}
 
 	@PostMapping("/setup")
-	public void setupGame(@RequestBody String gameSetup) {
-
+	public void setupGame(@RequestBody GameSetup gameSetup) {
+		gameSetupRepo.saveAndFlush(gameSetup);
 	}
 
 }

@@ -8,10 +8,10 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import chasegame.data.GameSetupRepository;
+import chasegame.data.GameTypeRepository;
 import chasegame.data.ScoreRepository;
 import chasegame.data.UserRepository;
-import chasegame.models.GameSetup;
+import chasegame.models.GameType;
 import chasegame.models.Score;
 import chasegame.models.User;
 
@@ -19,13 +19,13 @@ import chasegame.models.User;
 public class DataLoader implements ApplicationRunner {
 
 	private UserRepository userRepository;
-	private GameSetupRepository gameSetupRepository;
+	private GameTypeRepository gameSetupRepository;
 	private PasswordEncoder passwordEncoder;
 	private ScoreRepository scoreRepository;
 
 	@Autowired
 	public DataLoader(UserRepository userRepository, PasswordEncoder passwordEncoder, ScoreRepository scoreRepository,
-			GameSetupRepository gameSetupRepository) {
+			GameTypeRepository gameSetupRepository) {
 		this.userRepository = userRepository;
 		this.passwordEncoder = passwordEncoder;
 		this.scoreRepository = scoreRepository;
@@ -41,8 +41,10 @@ public class DataLoader implements ApplicationRunner {
 	}
 
 	private void addGameSetup() {
-		GameSetup gameSetup = new GameSetup(1L, "Escape The Chase", 5);
-		gameSetupRepository.save(gameSetup);
+		GameType gameType = new GameType(1L, "Escape The Chase", 6, true);
+		GameType gameType2 = new GameType(2L, "Capture The Flag", 6, false);
+		gameSetupRepository.save(gameType);
+		gameSetupRepository.save(gameType2);
 	}
 
 }

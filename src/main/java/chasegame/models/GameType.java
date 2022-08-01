@@ -13,13 +13,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class GameSetup {
+public class GameType {
 
 	@Id
 	private Long id;
-	private String mode;
-	private int difficulty;
-	private int enemies;
-	private String obstacles;
-
+	private String modeName;
+	private int possibleEnemies;
+	private boolean selected;
 }
