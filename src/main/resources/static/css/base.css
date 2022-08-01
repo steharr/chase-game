@@ -24,51 +24,71 @@
 .route {
     background-color: orange;
 }
-.game-log{
+
+.game-log {
     height: 20rem;
-    max-height:20rem;
+    max-height: 20rem;
     border: 1px solid grey;
     overflow-y: scroll;
     overflow-x: hidden;
 }
 
-.user-stationary{
+.user-stationary {
     background-image: url("../media/gifs/man-stationary.gif");
     background-position: center;
 }
-.user-move-right{
+
+.user-move-right {
     background-image: url("../media/gifs/man-move-right.gif");
     background-position: center;
 }
-.user-move-left{
+
+.user-move-left {
     background-image: url("../media/gifs/man-move-left.gif");
     background-position: center;
 }
-.user-move-down{
+
+.user-move-down {
     background-image: url("../media/gifs/man-move-down.gif");
     background-position: center;
 }
-.user-move-up{
+
+.user-move-up {
     background-image: url("../media/gifs/man-move-up.gif");
     background-position: center;
 }
-.enemy-stationary{
+
+.enemy-stationary {
     background-image: url("../media/gifs/enemy-stationary.gif");
     background-position: center;
 }
-.enemy-move-right{
+
+.enemy-move-right {
     background-image: url("../media/gifs/enemy-move-right.gif");
     background-position: center;
 }
-.enemy-move-left{
+
+.enemy-move-left {
     background-image: url("../media/gifs/enemy-move-left.gif");
     background-position: center;
 }
-.enemy-move-down{
+
+.enemy-move-down {
     background-image: url("../media/gifs/enemy-move-down.gif");
     background-position: center;
 }
-.enemy-move-up{
+
+.enemy-move-up {
     background-image: url("../media/gifs/enemy-move-up.gif");
     background-position: center;
 }
+
+.end-game.modal-header {
+    color: whitesmoke
+}
+
+.end-game.modal-title {}
+
+.end-game.modal-body {}
+
+.end-game.modal-footer {}

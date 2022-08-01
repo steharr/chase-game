@@ -32,4 +32,15 @@ export class GameSetupConstants {
         y: 1
     }
 
+    static endGameMessages = {
+        victory: {
+            title: "You Won!!",
+            body: "Well done you won!! How about you try again...."
+        },
+        defeat: {
+            title: "You Lost!!",
+            body: "Unlucky!! How about you try again...."
+        }
+    }
+
 }

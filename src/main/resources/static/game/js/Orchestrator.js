@@ -1,3 +1,7 @@
+import {
+    GameSetupConstants
+} from '../constants/GameSetupConstants.js';
+
 export class Orchestrator {
 
     constructor(goodGuyName, badGuyName, victoryBlockName, scoreCalculator) {
@@ -49,9 +53,14 @@ export class Orchestrator {
         }
         this.updateGameLog(message);
 
-        $(document).ready(function () {
-            $('.modal').modal();
-        });
+        const modal = new bootstrap.Modal('#endGameModal');
+        const modalTitle = document.getElementById('endGameModalTitle');
+        modalTitle.textContent = this.gameDetails.victorious ? GameSetupConstants.endGameMessages.victory.title : GameSetupConstants.endGameMessages.defeat.title;
+        const container = document.getElementById('container-modal-header');
+        this.gameDetails.victorious ? container.classList.add('bg-success') : container.classList.add('bg-danger');
+        const modalBody = document.getElementById('endGameModalBody');
+        modalBody.textContent = this.gameDetails.victorious ? GameSetupConstants.endGameMessages.victory.body : GameSetupConstants.endGameMessages.defeat.body;
+        modal.show();
     }
 
     updateGameLog(messageText) {
@@ -62,12 +71,12 @@ export class Orchestrator {
         }
         this.gameDetails.messages.push(messageInfo);
         $('#messages').prepend(`
-        <li class="collection-item">
+        <li class="list-group-item">
         <div class="row">
-            <div class="col s8">
+            <div class="col-8">
                 <span class="left">${messageInfo.message}</span>
             </div>
-            <div class="col s4">
+            <div class="col-4">
                 <span class="right">${messageInfo.time}</span>
             </div>
 	    </div>
