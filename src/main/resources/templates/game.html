@@ -75,6 +75,7 @@
 	<script th:inline="javascript">
 		const ROWS = /*[[${gameBoard.totalRows}]]*/ 5;
 		const COLS = /*[[${gameBoard.totalColumns}]]*/ 5;
+		const GAME_SETUP = /*[[${gameSetup}]]*/ {};
 	</script>
 
 	<script type="module" th:src="@{game/js/game.js}"></script>

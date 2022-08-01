@@ -20,15 +20,16 @@ import {
     ScoreManager
 } from './ScoreManager.js';
 
+
+const enemies = generateEnemies(GAME_SETUP.enemies);
 let mouse = new Character('user', 'blue');
-let cat = new Ai('enemy', 'red', 'easy');
-let cat2 = new Ai('enemy', 'red', 'hard');
+
 let cheese = new Asset('cheese', 'yellow');
 let timer = new Timer("2:00");
 let gameAssets = new GameAssets();
-let enemies = [cat, cat2];
-let scoreManager = new ScoreManager(mouse, enemies, timer)
-let orchestrator = new Orchestrator(mouse.name, cat.name, cheese.name, scoreManager);
+
+let scoreManager;
+let orchestrator;
 
 $(document).ready(function () {
 
@@ -40,21 +41,24 @@ $(document).ready(function () {
     mouse.spawn([5, 5]);
 
     // *** Enemy ***
-    cat.id = gameAssets.generateUniqueAssetId();
-    cat.spawn([8, 8]);
-    cat.target = mouse.id;
-
-    cat2.id = gameAssets.generateUniqueAssetId();
-    cat2.spawn([15, 12]);
-    cat2.target = mouse.id;
+    let p = 8;
+    for (let e of enemies) {
+        e.id = gameAssets.generateUniqueAssetId();
+        e.spawn([8, p]);
+        e.target = mouse.id;
+        p++
+    }
 
     // *** Goal ***
     cheese.id = gameAssets.generateUniqueAssetId();
     cheese.spawn([10, 10]);
 
+    // *** Game Setup ***
+    scoreManager = new ScoreManager(mouse, enemies, timer);
+    orchestrator = new Orchestrator(mouse.name, enemies[0].name, cheese.name, scoreManager);
+
     // *** Timer ***
     timer.initialize();
-
 });
 
 $(document).on('keydown', function (e) {
@@ -103,4 +107,16 @@ function generateObstacles() {
             cell.addClass('obstacle');
         }
     }
+}
+
+function generateEnemies(number) {
+
+    let eList = [];
+
+    for (let i = 0; i < number; i++) {
+        let e = new Ai('enemy', 'red', 'easy');
+        eList.push(e);
+    }
+
+    return eList
 }

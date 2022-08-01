@@ -31,9 +31,15 @@ public class GameController {
 		model.addAttribute(gameBoard);
 	}
 
+	public void createGameSetup(Model model) {
+		GameSetup gameSetup = gameSetupRepo.getGameSetup();
+		model.addAttribute("gameSetup", gameSetup);
+	}
+
 	@GetMapping("/game")
 	public String startGame(Model model) {
 		createGameBoard(model);
+		createGameSetup(model);
 		return "game";
 	}
 
