@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import chasegame.data.GameSetupRepository;
 import chasegame.models.GameBoard;
@@ -41,7 +42,7 @@ public class GameController {
 	}
 
 	@PostMapping("/setup")
-	public void setupGame(GameSetup gameSetup) {
+	public void setupGame(@RequestBody String gameSetup) {
 
 	}
 

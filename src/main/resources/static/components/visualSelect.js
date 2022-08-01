@@ -1,58 +1,65 @@
-const possibleFilledOptions = GAME_SETUP.possibleEnemies;
-const filledOptionClass = 'option-enemy';
+// const possibleFilledOptionsList[containerNumber] = GAME_SETUP.possibleEnemies;
+const visualSelectClassesList = ['option-enemy', 'option-difficulty'];
+const possibleFilledOptionsList = [GAME_SETUP.possibleEnemies, 3];
 const unfilledOptionClass = 'option-empty';
 
 
-document.addEventListener("DOMContentLoaded", setupVisualSelect);
+document.addEventListener("DOMContentLoaded", () => {
+    let i = 0;
+    visualSelectClassesList.forEach((visualSelect) => {
+        setupVisualSelect(i, visualSelect);
+        i++;
+    })
+});
 
-function setupVisualSelect() {
+function setupVisualSelect(containerNumber, optionClass) {
 
-    const startingOptionEnemies = Math.ceil(possibleFilledOptions / 2);
-    for (let i = 0; i < possibleFilledOptions; i++) {
-        if (i <= startingOptionEnemies) {
-            addOption(filledOptionClass);
+    const startingOptions = Math.ceil(possibleFilledOptionsList[containerNumber] / 2);
+    for (let i = 0; i < possibleFilledOptionsList[containerNumber]; i++) {
+        if (i <= startingOptions) {
+            addOption(containerNumber, optionClass);
         } else {
-            addOption(unfilledOptionClass);
+            addOption(containerNumber, unfilledOptionClass);
         }
     }
 
 }
 
-function moveVisualSelect(direction) {
+function moveVisualSelect(containerNumber, optionClass, direction) {
 
-    const currentEnemiesCount = document.getElementsByClassName(filledOptionClass).length;
-    let newEnemiesCount;
+    const optionCountOld = document.getElementsByClassName(optionClass).length;
+    let optionCountNew;
 
-    clearOptions();
+    clearOptions(containerNumber);
 
     if (direction === 'left') {
-        newEnemiesCount = currentEnemiesCount - 1 > 0 ? currentEnemiesCount - 1 : 0;
+        optionCountNew = optionCountOld - 1 > 0 ? optionCountOld - 1 : 0;
     }
 
     if (direction === 'right') {
-        newEnemiesCount = currentEnemiesCount + 1 < possibleFilledOptions ? currentEnemiesCount + 1 : possibleFilledOptions;
+        optionCountNew = optionCountOld + 1 < possibleFilledOptionsList[containerNumber] ? optionCountOld + 1 : possibleFilledOptionsList[containerNumber];
     }
 
-    for (let i = 0; i < possibleFilledOptions; i++) {
-        if (i < newEnemiesCount) {
-            addOption(filledOptionClass);
+    for (let i = 0; i < possibleFilledOptionsList[containerNumber]; i++) {
+        if (i < optionCountNew) {
+            addOption(containerNumber, optionClass);
         } else {
-            addOption(unfilledOptionClass);
+            addOption(containerNumber, unfilledOptionClass);
         }
     }
 }
 
-function clearOptions() {
-    const optionContainer = document.getElementById('visual-select-options');
+function clearOptions(containerNumber) {
+    const optionContainer = document.getElementById(`visual-select-options-${containerNumber}`);
     while (optionContainer.firstChild) {
         optionContainer.firstChild.remove();
     }
 }
 
-function addOption(optionClassType) {
-    const optionContainer = document.getElementById('visual-select-options');
+function addOption(containerNumber, optionClass) {
+    const optionContainer = document.getElementById(`visual-select-options-${containerNumber}`);
     const option = document.createElement('div')
     option.classList.add('option');
-    option.classList.add(optionClassType);
+    option.classList.add(optionClass);
     optionContainer.appendChild(option);
 }

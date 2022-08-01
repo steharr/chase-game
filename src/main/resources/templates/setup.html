@@ -61,16 +61,45 @@
                         <div class="col-8 d-flex justify-content-around">
 
                             <div class="arrow">
-                                <button class="btn btn-secondary" type="button" onclick="moveVisualSelect('left')">
+                                <button class="btn btn-secondary" type="button"
+                                    onclick="moveVisualSelect(0,'option-enemy','left')">
                                     <i class="fa-solid fa-caret-left"></i>
                                 </button>
                             </div>
 
-                            <div id="visual-select-options">
+                            <div id="visual-select-options-0" name="enemies">
                             </div>
 
                             <div class="arrow">
-                                <button class="btn btn-secondary" type="button" onclick="moveVisualSelect('right')">
+                                <button class="btn btn-secondary" type="button"
+                                    onclick="moveVisualSelect(0,'option-enemy','right')">
+                                    <i class="fa-solid fa-caret-right"></i>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Difficulty -->
+                    <div class="row">
+                        <div class="col-4">
+                            <p class="game-setup-label">Difficulty:</p>
+                        </div>
+                        <div class="col-8 d-flex justify-content-around">
+
+                            <div class="arrow">
+                                <button class="btn btn-secondary" type="button"
+                                    onclick="moveVisualSelect(1,'option-difficulty','left')">
+                                    <i class="fa-solid fa-caret-left"></i>
+                                </button>
+                            </div>
+
+                            <div id="visual-select-options-1" name="difficulty">
+                            </div>
+
+                            <div class="arrow">
+                                <button class="btn btn-secondary" type="button"
+                                    onclick="moveVisualSelect(1,'option-difficulty','right')">
                                     <i class="fa-solid fa-caret-right"></i>
                                 </button>
                             </div>

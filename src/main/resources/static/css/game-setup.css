@@ -6,7 +6,7 @@
     font-weight: 600;
 }
 
-#visual-select-options {
+div[id^="visual-select-options"] {
     display: flex;
     flex-direction: row;
 }
@@ -23,6 +23,16 @@
     height: 2rem;
     background-color: #a2d9a0;
 }
+
+.option-difficulty {
+    background-image: url("../media/gifs/fire.gif");
+    background-position: center;
+    border: 1px solid black;
+    width: 2rem;
+    height: 2rem;
+    background-color: #a2d9a0;
+}
+
 
 .option-empty {
     background-position: center;
