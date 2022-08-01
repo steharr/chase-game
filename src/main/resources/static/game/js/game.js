@@ -44,15 +44,16 @@ $(document).ready(function () {
 
     // *** User ***
     user.id = gameAssets.generateUniqueAssetId();
-    user.spawn([5, 5]);
+    user.spawn([GameSetupConstants.botLeftCord.x, GameSetupConstants.botLeftCord.y]);
 
     // *** Enemy ***
-    let p = 8;
+    let y = GameSetupConstants.topRightCord.y;
+    let x = GameSetupConstants.topRightCord.x;
     for (let e of enemies) {
         e.id = gameAssets.generateUniqueAssetId();
-        e.spawn([8, p]);
+        e.spawn([x, y]);
         e.target = user.id;
-        p++
+        y--;
     }
 
     // *** Goal ***

@@ -10,4 +10,26 @@ export class GameSetupConstants {
         2: 'medium',
         3: 'hard'
     }
+
+
+    static topRightCord = {
+        x: COLS - 1,
+        y: ROWS
+    }
+
+    static botRightCord = {
+        x: COLS - 1,
+        y: 1
+    }
+
+    static topLeftCord = {
+        x: 0,
+        y: ROWS - 1
+    }
+
+    static botLeftCord = {
+        x: 0,
+        y: 1
+    }
+
 }
