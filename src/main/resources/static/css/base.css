@@ -92,3 +92,15 @@
 .end-game.modal-body {}
 
 .end-game.modal-footer {}
+
+.score-container {
+    background-color: #5BC0EB;
+    border: 7.5px solid #FDE74C;
+    color: #404E4D;
+    font-weight: bolder;
+    border-radius: 3px;
+    width: 20%;
+    margin: auto;
+    font-size: 1.25rem;
+
+}

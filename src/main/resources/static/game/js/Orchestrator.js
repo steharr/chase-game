@@ -1,4 +1,7 @@
 import {
+    GameMessages
+} from '../constants/GameMessages.js';
+import {
     GameSetupConstants
 } from '../constants/GameSetupConstants.js';
 
@@ -37,19 +40,22 @@ export class Orchestrator {
             }
         });
         if (this.scoreCalculator.enemyNearUser) {
-            let message = "Enemy is close!! Watch out ...";
+            let message = GameMessages.enemyClose;
             this.updateGameLog(message);
         }
-        this.scoreCalculator.updateScore(!this.gameDetails.inProgress);
+        this.scoreCalculator.calculateScore(!this.gameDetails.inProgress);
+
+        this.scoreCalculator.updateScoreDisplay(); //TODO: add dynamic game stages
         this.gameDetails.score = this.scoreCalculator.getScore();
     }
 
     finishGame() {
         let message;
         if (this.gameDetails.victorious) {
-            message = `You Won!!! Well done ... your score was ${this.gameDetails.score}`;
+            message = GameMessages.gameWin(this.gameDetails.score);
         } else {
-            message = `You Lost!!! Better luck next time ... your score was ${this.gameDetails.score}`;
+            // message = `You Lost!!! Better luck next time ... your score was ${this.gameDetails.score}`;
+            message = GameMessages.gameLose(this.gameDetails.score);
         }
         this.updateGameLog(message);
 

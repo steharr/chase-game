@@ -20,7 +20,7 @@ export class ScoreManager {
         }
     }
 
-    updateScore(gameFinished = false) {
+    calculateScore(gameFinished = false) {
         this.enemies.forEach(enemy => {
             // determine if enemy is within two blocks & increment score
             if (this.determineIfEnemyNearby(this.user, enemy)) {
@@ -35,6 +35,11 @@ export class ScoreManager {
                     ((1 / this.timer.getTime()[1]) * 10)
                 )
         }
+    }
+
+    updateScoreDisplay() {
+        const scoreElement = document.getElementById('game-score');
+        scoreElement.innerText = this.total;
     }
 
     determineIfEnemyNearby(asset1, asset2) {
