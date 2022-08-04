@@ -36,7 +36,7 @@ export class Orchestrator {
                 this.gameDetails.inProgress = false;
             }
         });
-        if (this.scoreCalculator.isEnemyNearby) {
+        if (this.scoreCalculator.enemyNearUser) {
             let message = "Enemy is close!! Watch out ...";
             this.updateGameLog(message);
         }

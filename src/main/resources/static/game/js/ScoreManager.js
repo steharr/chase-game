@@ -7,6 +7,7 @@ export class ScoreManager {
         this.total = 0;
         this.headers = this.setupHttpHeaders();
         this.scoreUrl = window.location.href.match(/^.*\//) + "score";
+        this.enemyNearUser = false;
     }
 
     setupHttpHeaders() {
@@ -22,7 +23,7 @@ export class ScoreManager {
     updateScore(gameFinished = false) {
         this.enemies.forEach(enemy => {
             // determine if enemy is within two blocks & increment score
-            if (this.isEnemyNearby(this.user, enemy)) {
+            if (this.determineIfEnemyNearby(this.user, enemy)) {
                 this.total = this.total + 50;
             }
         });
@@ -36,9 +37,10 @@ export class ScoreManager {
         }
     }
 
-    isEnemyNearby(asset1, asset2) {
+    determineIfEnemyNearby(asset1, asset2) {
         let distBetweenAssets = this.calcDistance(asset1, asset2)
         if (distBetweenAssets[0] <= 1 && distBetweenAssets[1] <= 1) {
+            this.enemyNearUser = true;
             return true;
         }
         return false;
