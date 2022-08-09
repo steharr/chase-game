@@ -43,6 +43,8 @@ public class DataLoader implements ApplicationRunner {
 		User dev = new User("dev", passwordEncoder.encode("password"), "developer");
 		userRepository.save(dev);
 		scoreRepository.save(new Score(3L, new Date(), 200L, dev.getUsername()));
+		scoreRepository.save(new Score(4L, new Date(), 202L, dev.getUsername()));
+		scoreRepository.save(new Score(5L, new Date(), 122L, dev.getUsername()));
 		addGameSetup();
 	}
 

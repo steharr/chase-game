@@ -28,37 +28,42 @@
 
 <body>
 
-
-
-	<div class="row">
-		<div class="col-8">
+	<div class="game-container">
+		<div class="game-board">
 			<div th:each="row : ${gameBoard.gameBoardRows}">
 				<div th:each="cell : ${row}" th:attr="data-x=${cell.coordinates.y}, data-y=${cell.coordinates.x}"
 					class="bo cell"></div>
 			</div>
 		</div>
-		<div class="col-4">
-			<div class="text-center">
-				<h3>Score</h3>
-				<div class="score-container">
-					<span id="game-score">0</span>
-				</div>
-			</div>
-			<h4 class="text-center">Game Log</h4>
-			<div class="game-log">
-				<ul class="list-group" id="messages">
-				</ul>
-			</div>
-			<div>
-				<a th:href="@{/leaderboards}" class="btn btn-primary">View Leaderboards</a>
-			</div>
-		</div>
 	</div>
-
-	<div class="row">
-		<div class="col-12">
+	<div class="d-flex">
+		<div class="w-25 d-flex flex-column align-items-center">
 			<h3>Timer</h3>
 			<div id="timer"></div>
+		</div>
+
+		<div class="w-75">
+
+			<div class="d-flex">
+				<div class="w-50">
+					<div class="d-flex flex-column align-items-center">
+						<h3>Score</h3>
+						<div class="score-container text-center">
+							<span id="game-score">0</span>
+						</div>
+					</div>
+				</div>
+				<div class="w-50 d-flex flex-column align-items-center">
+					<h4 class="text-center">Game Log</h4>
+					<div class="game-log">
+						<ul class="list-group" id="messages">
+						</ul>
+					</div>
+					<div>
+						<a th:href="@{/leaderboards}" class="btn btn-primary">View Leaderboards</a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 

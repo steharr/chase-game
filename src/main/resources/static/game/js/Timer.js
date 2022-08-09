@@ -37,7 +37,6 @@ export class Timer {
 
     complete() {
         clearInterval(this.timerInterval);
-        console.log("Game Finished");
     }
 
     getTime() {

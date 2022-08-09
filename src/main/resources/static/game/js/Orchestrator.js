@@ -54,7 +54,6 @@ export class Orchestrator {
         if (this.gameDetails.victorious) {
             message = GameMessages.gameWin(this.gameDetails.score);
         } else {
-            // message = `You Lost!!! Better luck next time ... your score was ${this.gameDetails.score}`;
             message = GameMessages.gameLose(this.gameDetails.score);
         }
         this.updateGameLog(message);
@@ -66,6 +65,9 @@ export class Orchestrator {
         this.gameDetails.victorious ? container.classList.add('bg-success') : container.classList.add('bg-danger');
         const modalBody = document.getElementById('endGameModalBody');
         modalBody.textContent = this.gameDetails.victorious ? GameSetupConstants.endGameMessages.victory.body : GameSetupConstants.endGameMessages.defeat.body;
+        if (this.gameDetails.victorious) {
+            this.scoreCalculator.postScore();
+        }
         modal.show();
     }
 

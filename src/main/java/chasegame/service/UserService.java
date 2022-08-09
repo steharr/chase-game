@@ -17,6 +17,10 @@ public class UserService {
 		SecurityContext securityContext = SecurityContextHolder.getContext();
 		Authentication authentication = securityContext.getAuthentication();
 
-		return (User) authentication.getPrincipal();
+		try {
+			return (User) authentication.getPrincipal();
+		} catch (ClassCastException e) {
+			return new User("anonymous", "", "");
+		}
 	}
 }

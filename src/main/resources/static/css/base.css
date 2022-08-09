@@ -3,7 +3,7 @@
 }
 
 .bo {
-    border: 1px solid black;
+    border: 1px solid #939492;
 }
 
 .cell {
@@ -15,6 +15,14 @@
     line-height: 2;
     text-align: center;
     background-color: #a2d9a0;
+    background-image: url("../media/pngs/grass.png");
+    background-position: center;
+    background-size: cover;
+}
+
+.cheese {
+    background-color: #FDE74C;
+    background-image: none !important;
 }
 
 .obstacle {
@@ -26,8 +34,9 @@
 }
 
 .game-log {
-    height: 20rem;
-    max-height: 20rem;
+    height: 10rem;
+    max-height: 10rem;
+    width: 75%;
     border: 1px solid grey;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -103,4 +112,64 @@
     margin: auto;
     font-size: 1.25rem;
 
+}
+
+.rock-1 {
+    background-image: url("../media/pngs/rock-1.png");
+}
+
+.rock-2 {
+    background-image: url("../media/pngs/rock-2.png");
+}
+
+.rock-3 {
+    background-image: url("../media/pngs/rock-3.png");
+}
+
+.rock-4 {
+    background-image: url("../media/pngs/rock-4.png");
+}
+
+.game-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+}
+
+.game-board {
+    background-color: #a4d188;
+    padding: 1rem;
+    border: .5rem solid #333333;
+    border-radius: 10px;
+}
+
+.gold {
+    color: #FFD700;
+}
+
+.leaderboard-header {
+    background: rgb(61, 84, 103);
+    border: .25rem solid #333333;
+    color: #F1EDEE;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+}
+
+.leaderboard-row {
+    background: rgb(138, 162, 158);
+    background: radial-gradient(circle, rgba(138, 162, 158, 1) 44%, rgba(61, 84, 103, 0.8323704481792717) 87%);
+    border-color: #2D4739;
+    color: #F1EDEE;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+}
+
+.star {
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333333;
 }

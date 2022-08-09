@@ -93,9 +93,6 @@ $(document).on('keydown', function (e) {
             break;
             // space
         case "Space":
-            // cat.route.display();
-            // user.route.display();
-            scoreManager.postScore();
             break;
         case "Enter":
             location.reload();
@@ -126,6 +123,9 @@ function generateObstacles(desiredObstacles) {
         obstacleCells.push[randomCell];
         const cell = $(`div[data-x="${randomCell.y}"][data-y="${randomCell.x}"]`);
         cell.addClass('obstacle');
+        const randomRockNumber = generateRandomNumber(1, 4);
+
+        cell.addClass(`rock-${randomRockNumber}`);
         obstacleCount++;
     }
 
@@ -150,4 +150,16 @@ function generateRandomCellReference() {
         x: randomRow,
         y: randomCol
     };
+}
+
+function generateRandomNumber(min, max) {
+    let random = Math.round((Math.random()) * max);
+
+    if (random < min) {
+        while (random < min) {
+            random = Math.round((Math.random()) * max);
+        }
+    }
+
+    return random;
 }

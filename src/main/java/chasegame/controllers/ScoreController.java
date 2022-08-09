@@ -30,6 +30,7 @@ public class ScoreController {
 
 	@PostMapping
 	public void saveScore(@RequestBody Score score) {
+
 		scoreService.saveScore(score);
 	}
 
