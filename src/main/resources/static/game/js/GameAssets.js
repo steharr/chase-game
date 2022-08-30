@@ -14,4 +14,8 @@ export class GameAssets {
         this.idList.push(generatedId);
         return generatedId;
     }
+
+    getAllAssets() {
+        return this.idList;
+    }
 }

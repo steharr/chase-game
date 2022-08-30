@@ -1,36 +1,40 @@
 import {
+    GameSetupConstants
+} from '../constants/GameSetupConstants.js';
+import {
+    Ai
+} from './Ai.js';
+import {
     Asset
 } from './Asset.js';
 import {
     Character
 } from './Character.js';
 import {
-    Ai
-} from './Ai.js';
+    GameAssets
+} from './GameAssets.js';
 import {
     Orchestrator
 } from './Orchestrator.js';
 import {
-    GameAssets
-} from './GameAssets.js';
-import {
-    Timer
-} from './Timer.js';
-import {
     ScoreManager
 } from './ScoreManager.js';
 import {
-    GameSetupConstants
-} from '../constants/GameSetupConstants.js';
+    Timer
+} from './Timer.js';
 
 
 const difficulty = GameSetupConstants.difficulties[GAME_SETUP.difficulty];
-const obstacles = GameSetupConstants.obstacles[GAME_SETUP.obstacles];
+const numberOfObstacles = GameSetupConstants.obstacles[GAME_SETUP.obstacles];
 const enemies = generateEnemies(GAME_SETUP.enemies);
 
 let user = new Character('user', 'blue');
 
 let cheese = new Asset('cheese', 'yellow');
+
+let flag = new Asset('flag', 'brown');
+
+
 let timer = new Timer("2:00");
 let gameAssets = new GameAssets();
 
@@ -40,11 +44,16 @@ let orchestrator;
 $(document).ready(function () {
 
     // *** Level ***
-    generateObstacles(obstacles);
+    // generateObstacles(numberOfObstacles);
 
     // *** User ***
     user.id = gameAssets.generateUniqueAssetId();
     user.spawn([GameSetupConstants.botLeftCord.x, GameSetupConstants.botLeftCord.y]);
+
+    // *** Flag ***
+    flag.id = gameAssets.generateUniqueAssetId();
+    flag.spawn([11, 11]);
+    
 
     // *** Enemy ***
     let y = GameSetupConstants.topRightCord.y;
@@ -52,7 +61,7 @@ $(document).ready(function () {
     for (let e of enemies) {
         e.id = gameAssets.generateUniqueAssetId();
         e.spawn([x, y]);
-        e.target = user.id;
+        e.target = flag.id;
         y--;
     }
 
