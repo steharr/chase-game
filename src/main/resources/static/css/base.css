@@ -15,7 +15,7 @@
     line-height: 2;
     text-align: center;
     background-color: #a2d9a0;
-    background-image: url("../media/pngs/grass.png");
+    /* background-image: url("../media/pngs/grass.png"); */
     background-position: center;
     background-size: cover;
 }
@@ -47,8 +47,18 @@
     background-position: center;
 }
 
+.user-move-right-with-flag {
+    background-image: url("../media/gifs/man-move-right-with-flag.gif");
+    background-position: center;
+}
+
 .user-move-right {
     background-image: url("../media/gifs/man-move-right.gif");
+    background-position: center;
+}
+
+.user-move-left-with-flag {
+    background-image: url("../media/gifs/man-move-left-with-flag.gif");
     background-position: center;
 }
 
@@ -57,8 +67,23 @@
     background-position: center;
 }
 
+.user-captured-flag {
+    background-image: url("../media/gifs/man-captured-flag.gif");
+    background-position: center;
+}
+
 .user-move-down {
     background-image: url("../media/gifs/man-move-down.gif");
+    background-position: center;
+}
+
+.user-move-down-with-flag {
+    background-image: url("../media/gifs/man-move-up-with-flag.gif");
+    background-position: center;
+}
+
+.user-move-up-with-flag {
+    background-image: url("../media/gifs/man-move-up-with-flag.gif");
     background-position: center;
 }
 
@@ -72,8 +97,18 @@
     background-position: center;
 }
 
+.enemy-stationary-with-flag {
+    background-image: url("../media/gifs/enemy-stationary-with-flag.gif");
+    background-position: center;
+}
+
 .enemy-move-right {
     background-image: url("../media/gifs/enemy-move-right.gif");
+    background-position: center;
+}
+
+.enemy-move-right-with-flag {
+    background-image: url("../media/gifs/enemy-move-right-with-flag.gif");
     background-position: center;
 }
 
@@ -82,13 +117,28 @@
     background-position: center;
 }
 
+.enemy-move-left-with-flag {
+    background-image: url("../media/gifs/enemy-move-left-with-flag.gif");
+    background-position: center;
+}
+
 .enemy-move-down {
     background-image: url("../media/gifs/enemy-move-down.gif");
     background-position: center;
 }
 
+.enemy-move-down-with-flag {
+    background-image: url("../media/gifs/enemy-move-down-with-flag.gif");
+    background-position: center;
+}
+
 .enemy-move-up {
     background-image: url("../media/gifs/enemy-move-up.gif");
+    background-position: center;
+}
+
+.enemy-move-up-with-flag {
+    background-image: url("../media/gifs/enemy-move-up-with-flag.gif");
     background-position: center;
 }
 

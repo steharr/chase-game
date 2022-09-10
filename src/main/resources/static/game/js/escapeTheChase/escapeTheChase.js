@@ -1,6 +1,6 @@
 import {
     GameSetupConstants
-} from '../constants/GameSetupConstants.js';
+} from '../../constants/GameSetupConstants.js';
 import {
     Ai
 } from './Ai.js';
@@ -53,7 +53,7 @@ $(document).ready(function () {
     // *** Flag ***
     flag.id = gameAssets.generateUniqueAssetId();
     flag.spawn([11, 11]);
-    
+
 
     // *** Enemy ***
     let y = GameSetupConstants.topRightCord.y;

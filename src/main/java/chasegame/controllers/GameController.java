@@ -45,10 +45,10 @@ public class GameController {
     @GetMapping("/setup")
     public String displaySetup(Model model) {
         List<GameType> gameTypes = gameTypeRepo.findAll();
-
+        
         GameType selectedGameType = gameTypeRepo.findBySelectedGameType();
         model.addAttribute("gameType", selectedGameType);
-        
+
         return "setup";
     }
 

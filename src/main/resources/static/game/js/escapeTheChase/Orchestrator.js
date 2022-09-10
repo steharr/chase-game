@@ -1,9 +1,9 @@
 import {
     GameMessages
-} from '../constants/GameMessages.js';
+} from '../../constants/GameMessages.js';
 import {
     GameSetupConstants
-} from '../constants/GameSetupConstants.js';
+} from '../../constants/GameSetupConstants.js';
 
 export class Orchestrator {
 
