@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Data
@@ -28,5 +29,7 @@ public class Score implements Serializable {
 
     @ManyToOne
     private User user;
+
+    private ArrayList<Long> route;
 
 }

@@ -1,6 +1,6 @@
-function playAccordion(node) {
+function playAccordion(node, data) {
 
-
+    console.table(data);
 
     if (!node.classList.contains('expanded-row')) {
 

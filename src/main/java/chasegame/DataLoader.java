@@ -14,6 +14,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 @Component
@@ -41,9 +42,9 @@ public class DataLoader implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         User dev = new User("dev", passwordEncoder.encode("password"), "developer");
         userRepository.save(dev);
-        scoreRepository.save(new Score(3L, new Date(), 200L, dev));
-        scoreRepository.save(new Score(4L, new Date(), 202L, dev));
-        scoreRepository.save(new Score(5L, new Date(), 122L, dev));
+        scoreRepository.save(new Score(3L, new Date(), 200L, dev, new ArrayList<>()));
+        scoreRepository.save(new Score(4L, new Date(), 202L, dev, new ArrayList<>()));
+        scoreRepository.save(new Score(5L, new Date(), 122L, dev, new ArrayList<>()));
         addGameSetup();
     }
 

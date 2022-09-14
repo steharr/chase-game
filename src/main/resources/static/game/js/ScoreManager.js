@@ -8,6 +8,7 @@ export class ScoreManager {
         this.headers = this.setupHttpHeaders();
         this.scoreUrl = window.location.href.match(/^.*\//) + "score";
         this.enemyNearUser = false;
+        this.route = this.user.route.route;
     }
 
     setupHttpHeaders() {
@@ -67,7 +68,8 @@ export class ScoreManager {
         let saveScore = this.total;
         let data = {
             score: saveScore,
-            date: new Date()
+            date: new Date(),
+            route: this.route
         };
         fetch(this.scoreUrl, {
             method: "POST",
