@@ -63,9 +63,9 @@ export class Orchestrator {
             let message = GameMessages.enemyClose;
             this.updateGameLog(message);
         }
-        this.scoreCalculator.calculateScore(!this.gameDetails.inProgress);
 
-        this.scoreCalculator.updateScoreDisplay(); //TODO: add dynamic game stages
+
+
         this.gameDetails.score = this.scoreCalculator.getScore();
     }
 
@@ -142,6 +142,9 @@ export class Orchestrator {
         this.arrEnemies.forEach(enemy => {
             enemy.target = this.flag.id;
         })
+
+        this.scoreCalculator.updateScore();
+        this.scoreCalculator.updateScoreDisplay();
     }
     handleFlagGrabByEnemyEvent(enemyFlagBearer) {
         enemyFlagBearer.hasFlag = true;

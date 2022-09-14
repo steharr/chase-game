@@ -37,6 +37,10 @@ export class ScoreManager {
         }
     }
 
+    updateScore() {
+        this.total = this.total + 1;
+    }
+
     updateScoreDisplay() {
         const scoreElement = document.getElementById('game-score');
         scoreElement.innerText = this.total;
