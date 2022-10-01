@@ -1,37 +1,46 @@
 package chasegame.controllers;
 
-import java.util.List;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import chasegame.models.Score;
 import chasegame.service.ScoreService;
+import chasegame.service.UserService;
+import chasegame.submit.ScoreSubmit;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+@Slf4j
 @RestController
 @RequestMapping("/score")
 public class ScoreController {
 
-	private ScoreService scoreService;
+    @Autowired
+    private ScoreService scoreService;
 
-	public ScoreController(ScoreService scoreService) {
-		this.scoreService = scoreService;
-	}
+    @Autowired
+    private UserService userService;
 
-	@GetMapping
-	public ResponseEntity<List<Score>> getScores() {
-		return new ResponseEntity<>(scoreService.getScores(), HttpStatus.OK);
-	}
 
-	@PostMapping
-	public void saveScore(@RequestBody Score score) {
+    @GetMapping
+    public ResponseEntity<List<Score>> getScores() {
+        try {
+            return new ResponseEntity<>(scoreService.getScores(), HttpStatus.OK);
+        } catch (Exception e) {
+            log.error("ScoreController::getScores" + e.getMessage());
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 
-		scoreService.saveScore(score);
-	}
+    @PostMapping
+    public void saveScore(@RequestBody ScoreSubmit submit) {
+        try {
+            scoreService.submitScore(submit);
+        } catch (Exception e) {
+            log.error("ScoreController::saveScore" + e.getMessage());
+        }
+    }
 
 }

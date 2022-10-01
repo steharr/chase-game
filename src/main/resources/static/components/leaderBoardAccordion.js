@@ -10,9 +10,9 @@ function playAccordion(node, data) {
             <td>
                 <div class="star"><i class="fa-solid fa-star gold"></i></div>
             </td>
-            <th> TEST </th>
             <td></td>
             <td>data.score</td>
+            <td>data.date</td>
             <td>data.date</td>`;
 
         node.parentNode.insertBefore(accordionElement, node.nextSibling);

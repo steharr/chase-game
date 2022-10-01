@@ -71,6 +71,7 @@ export class ScoreManager {
             date: new Date(),
             route: this.route
         };
+        console.table(data);
         fetch(this.scoreUrl, {
             method: "POST",
             headers: this.headers,

@@ -1,27 +1,27 @@
 import {
+    GameSetupConstants
+} from '../constants/GameSetupConstants.js';
+import {
+    Ai
+} from './Ai.js';
+import {
     Asset
 } from './Asset.js';
 import {
     Character
 } from './Character.js';
 import {
-    Ai
-} from './Ai.js';
+    GameAssets
+} from './GameAssets.js';
 import {
     Orchestrator
 } from './Orchestrator.js';
 import {
-    GameAssets
-} from './GameAssets.js';
-import {
-    Timer
-} from './Timer.js';
-import {
     ScoreManager
 } from './ScoreManager.js';
 import {
-    GameSetupConstants
-} from '../constants/GameSetupConstants.js';
+    Timer
+} from './Timer.js';
 
 
 const difficulty = GameSetupConstants.difficulties[GAME_SETUP.difficulty];
@@ -93,6 +93,7 @@ $(document).on('keydown', function (e) {
             break;
             // space
         case "Space":
+            scoreManager.postScore();
             break;
         case "Enter":
             location.reload();

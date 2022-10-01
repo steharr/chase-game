@@ -1,18 +1,18 @@
 package chasegame.models;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
+
+//(access = AccessLevel.PRIVATE, force = true)
 
 @Data
 @Entity
-@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
+@NoArgsConstructor
 @AllArgsConstructor
 public class Score implements Serializable {
 
@@ -30,6 +30,7 @@ public class Score implements Serializable {
     @ManyToOne
     private User user;
 
-    private ArrayList<Long> route;
+    private String routeCoordinates;
+    private String routeDirections;
 
 }
