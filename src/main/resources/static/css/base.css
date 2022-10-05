@@ -175,8 +175,11 @@
 }
 
 .cell-small {
-    display: inline-block;
     height: 1rem;
     width: 1rem;
     border: 1px solid black;
+}
+
+.cell-small-filled {
+    background-color: palevioletred;
 }
