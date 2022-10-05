@@ -30,7 +30,9 @@ public class Score implements Serializable {
     @ManyToOne
     private User user;
 
+    @Lob
     private String routeCoordinates;
+    @Lob
     private String routeDirections;
 
 }
