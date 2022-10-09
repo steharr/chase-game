@@ -92,9 +92,9 @@ $(document).on('keydown', function (e) {
             orchestrator.orchestrate(enemies);
             break;
             // space
-        case "Space":
-            scoreManager.postScore();
-            break;
+            // case "Space":
+            //     scoreManager.postScore();
+            //     break;
         case "Enter":
             location.reload();
             break;
