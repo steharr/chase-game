@@ -1,50 +1,60 @@
 package chasegame.service;
 
+import chasegame.data.ScoreRepository;
+import chasegame.models.Score;
+import chasegame.submit.ScoreSubmit;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
-import chasegame.data.ScoreRepository;
-import chasegame.models.Score;
-import chasegame.models.User;
-
 @Service
 public class ScoreService {
 
-	private ScoreRepository scoreRepository;
+    @Autowired
+    private ScoreRepository scoreRepository;
 
-	private UserService userService;
+    @Autowired
+    private UserService userService;
 
-	public ScoreService(ScoreRepository scoreRepository, UserService userService) {
-		this.scoreRepository = scoreRepository;
-		this.userService = userService;
-	}
+    public List<Score> getScores() {
+        List<Score> scores = scoreRepository.findAll();
+        return sortByHighestScore(scores);
+    }
 
-	public void saveScore(Score score) {
+    public void submitScore(ScoreSubmit submit) {
 
-		User currentUser = userService.getCurrentUser();
+        Score persistScore = new Score();
+        persistScore.setScore(submit.getScore());
+        persistScore.setDate(submit.getDate());
+        persistScore.setUser(userService.getDummyUser());
+        persistScore.setRouteDirections(" ");
+        persistScore.setRouteCoordinates(" ");
 
-		score.setUsername(currentUser.getUsername());
-		scoreRepository.save(score);
-	}
+        submit.getRoute().stream().forEach(data -> {
+            String[] coordinateArray = {data.get(0), data.get(1)};
+            String coordinate = String.join(",", coordinateArray);
+            String direction = data.get(2);
 
-	public List<Score> getScores() {
-		List<Score> scores = scoreRepository.findAll();
-		return sortByHighestScore(scores);
-	}
+            persistScore.setRouteCoordinates(String.join("+", new String[]{persistScore.getRouteCoordinates(), coordinate}));
+            persistScore.setRouteDirections(String.join("+", new String[]{persistScore.getRouteDirections(), direction}));
+        });
 
-	private List<Score> sortByHighestScore(List<Score> scores) {
+        scoreRepository.saveAndFlush(persistScore);
+    }
 
-		Collections.sort(scores, new Comparator<Score>() {
-			@Override
-			public int compare(Score s1, Score s2) {
-				return s2.getScore().compareTo(s1.getScore());
-			}
-		});
+    private List<Score> sortByHighestScore(List<Score> scores) {
 
-		return scores;
-	}
+        Collections.sort(scores, new Comparator<Score>() {
+            @Override
+            public int compare(Score s1, Score s2) {
+                return s2.getScore().compareTo(s1.getScore());
+            }
+        });
+
+        return scores;
+    }
 
 }

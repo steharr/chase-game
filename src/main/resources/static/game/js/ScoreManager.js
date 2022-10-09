@@ -8,6 +8,7 @@ export class ScoreManager {
         this.headers = this.setupHttpHeaders();
         this.scoreUrl = window.location.href.match(/^.*\//) + "score";
         this.enemyNearUser = false;
+        this.route = this.user.route.route;
     }
 
     setupHttpHeaders() {
@@ -42,6 +43,10 @@ export class ScoreManager {
         scoreElement.innerText = this.total;
     }
 
+    zeroScore() {
+        this.total = 0;
+    }
+
     determineIfEnemyNearby(asset1, asset2) {
         let distBetweenAssets = this.calcDistance(asset1, asset2)
         if (distBetweenAssets[0] <= 1 && distBetweenAssets[1] <= 1) {
@@ -67,8 +72,10 @@ export class ScoreManager {
         let saveScore = this.total;
         let data = {
             score: saveScore,
-            date: new Date()
+            date: new Date(),
+            route: this.route
         };
+        console.table(data);
         fetch(this.scoreUrl, {
             method: "POST",
             headers: this.headers,

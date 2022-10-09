@@ -1,27 +1,27 @@
 import {
+    GameSetupConstants
+} from '../constants/GameSetupConstants.js';
+import {
+    Ai
+} from './Ai.js';
+import {
     Asset
 } from './Asset.js';
 import {
     Character
 } from './Character.js';
 import {
-    Ai
-} from './Ai.js';
+    GameAssets
+} from './GameAssets.js';
 import {
     Orchestrator
 } from './Orchestrator.js';
 import {
-    GameAssets
-} from './GameAssets.js';
-import {
-    Timer
-} from './Timer.js';
-import {
     ScoreManager
 } from './ScoreManager.js';
 import {
-    GameSetupConstants
-} from '../constants/GameSetupConstants.js';
+    Timer
+} from './Timer.js';
 
 
 const difficulty = GameSetupConstants.difficulties[GAME_SETUP.difficulty];
@@ -62,7 +62,7 @@ $(document).ready(function () {
 
     // *** Game Setup ***
     scoreManager = new ScoreManager(user, enemies, timer);
-    orchestrator = new Orchestrator(user.name, enemies[0].name, cheese.name, scoreManager);
+    orchestrator = new Orchestrator(user.name, enemies[0].name, cheese.name, scoreManager, user);
 
     // *** Timer ***
     timer.initialize();
@@ -92,8 +92,9 @@ $(document).on('keydown', function (e) {
             orchestrator.orchestrate(enemies);
             break;
             // space
-        case "Space":
-            break;
+            // case "Space":
+            //     scoreManager.postScore();
+            //     break;
         case "Enter":
             location.reload();
             break;
