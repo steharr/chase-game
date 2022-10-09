@@ -62,7 +62,7 @@ $(document).ready(function () {
 
     // *** Game Setup ***
     scoreManager = new ScoreManager(user, enemies, timer);
-    orchestrator = new Orchestrator(user.name, enemies[0].name, cheese.name, scoreManager);
+    orchestrator = new Orchestrator(user.name, enemies[0].name, cheese.name, scoreManager, user);
 
     // *** Timer ***
     timer.initialize();

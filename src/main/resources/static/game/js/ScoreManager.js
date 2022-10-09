@@ -43,6 +43,10 @@ export class ScoreManager {
         scoreElement.innerText = this.total;
     }
 
+    zeroScore() {
+        this.total = 0;
+    }
+
     determineIfEnemyNearby(asset1, asset2) {
         let distBetweenAssets = this.calcDistance(asset1, asset2)
         if (distBetweenAssets[0] <= 1 && distBetweenAssets[1] <= 1) {
