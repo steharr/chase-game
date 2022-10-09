@@ -19,8 +19,9 @@
             </thead>
             <tbody>
 
-                <tr class="leaderboard-row" th:each="score,iter : ${scores}" id="leaderboard-row-${iter.index}"
-                    th:onclick="playAccordion(this,[[${score}]])">
+                <tr class="leaderboard-row" th:each="score,iter : ${leaderboard.scores}"
+                    id="leaderboard-row-${iter.index}"
+                    th:onclick="playAccordion(this,[[${score}]], [[${leaderboard.gameBoardRows}]],[[${leaderboard.gameBoardColumns}]])">
                     <td>
                         <div class="star"><i class="fa-solid fa-star gold"></i></div>
                     </td>

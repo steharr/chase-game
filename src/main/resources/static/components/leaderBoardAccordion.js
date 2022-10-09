@@ -1,14 +1,27 @@
-function playAccordion(clickedNode, data) {
+let GAME_BOARD_ROWS;
+let GAME_BOARD_COLS;
+let LEADERBOARD_VISUALISATION_DIRECTIONS = false;
+let EXPANDED_SCORE;
+
+
+function playAccordion(clickedNode, data, rows, columns) {
+
 
     try {
+        GAME_BOARD_ROWS = rows;
+        GAME_BOARD_COLS = columns;
+
         let score = new ScoreInfo(data.score, data.date, data.routeDirections, data.routeCoordinates);
+        EXPANDED_SCORE = score;
 
         if (!clickedNode.classList.contains('expanded-row')) {
 
             clearExpandedRows();
 
+
             let levelMapRow = createLeaderBoardRow();
             levelMapRow.appendChild(createLevelMapDetailsContainer());
+            levelMapRow.appendChild(createLevelMapOptions());
             clickedNode.parentNode.insertBefore(levelMapRow, clickedNode.nextSibling);
 
             clickedNode.classList.add('expanded-row');
@@ -17,8 +30,6 @@ function playAccordion(clickedNode, data) {
 
         } else if (clickedNode.classList.contains('expanded-row')) {
 
-            clickedNode.nextSibling.remove();
-            clickedNode.nextSibling.remove();
             clickedNode.nextSibling.remove();
             clickedNode.classList.remove('expanded-row');
 
@@ -53,11 +64,20 @@ function mapScoreCoordinatesToTable(score) {
         let cell = document.querySelector(`td[data-x="${coordinate[0]}"][data-y="${coordinate[1]}"]`);
 
         if (null !== cell) {
+
             cell.style.backgroundColor = String(heatMapGradient[index]);
+
+            if (LEADERBOARD_VISUALISATION_DIRECTIONS) {
+
+                const direction = score.directions[index];
+                cell.innerHTML = `<i class="fa-solid fa-${direction}"></i>`;
+            } else {
+                cell.innerHTML = "";
+            }
+
         }
 
     });
-
 
 }
 
@@ -70,7 +90,7 @@ function createLeaderBoardRow() {
 function createLevelMapDetailsContainer() {
 
     levelMapContainer = document.createElement("td");
-    levelMapContainer.colSpan = "5";
+    levelMapContainer.colSpan = "3";
 
     levelMapTable = document.createElement("table");
     levelMapTable.classList.add('level-map-table');
@@ -78,11 +98,11 @@ function createLevelMapDetailsContainer() {
 
     // row = x-axis, starts at 0
     // column = y-axis, starts at max cols
-    for (let r = 15; r > 0; r--) {
+    for (let r = GAME_BOARD_ROWS; r > 0; r--) {
         let row = document.createElement("tr");
 
 
-        for (let c = 30; c > 0; c--) {
+        for (let c = GAME_BOARD_COLS; c > 0; c--) {
             let col = document.createElement("td");
             col.dataset.x = c;
             col.dataset.y = r;
@@ -94,6 +114,25 @@ function createLevelMapDetailsContainer() {
     }
 
     return levelMapContainer;
+}
+
+function createLevelMapOptions() {
+    options = document.createElement("td");
+    options.colSpan = "2";
+    options.innerHTML = `
+    <div class="d-flex flex-column mt-5">
+        <div class="mb-3 mx-auto">
+            <button type="button" class="btn btn-info" onclick="changeVisualisationType()">Toggle Keystrokes</button>
+        </div>
+    </div>
+    `
+
+    return options;
+}
+
+function changeVisualisationType() {
+    LEADERBOARD_VISUALISATION_DIRECTIONS = !LEADERBOARD_VISUALISATION_DIRECTIONS;
+    mapScoreCoordinatesToTable(EXPANDED_SCORE);
 }
 
 function createScoreDetailsHeaderContainer(score) {
