@@ -1,34 +1,32 @@
 function playAccordion(clickedNode, data) {
 
-    let score = new ScoreInfo(data.score, data.date, data.routeDirections, data.routeCoordinates, );
-    console.table(score);
+    try {
+        let score = new ScoreInfo(data.score, data.date, data.routeDirections, data.routeCoordinates);
 
+        if (!clickedNode.classList.contains('expanded-row')) {
 
-    if (!clickedNode.classList.contains('expanded-row')) {
+            clearExpandedRows();
 
-        clearExpandedRows();
+            let levelMapRow = createLeaderBoardRow();
+            levelMapRow.appendChild(createLevelMapDetailsContainer());
+            clickedNode.parentNode.insertBefore(levelMapRow, clickedNode.nextSibling);
 
-        let levelMapRow = createLeaderBoardRow();
-        levelMapRow.appendChild(createLevelMapDetailsContainer());
-        clickedNode.parentNode.insertBefore(levelMapRow, clickedNode.nextSibling);
+            clickedNode.classList.add('expanded-row');
 
-        // let scoreDetailsRow = createLeaderBoardRow();
-        // scoreDetailsRow.innerHTML = createScoreDetailsHeaderContainer(score);
-        // clickedNode.parentNode.insertBefore(scoreDetailsRow, clickedNode.nextSibling);
+            mapScoreCoordinatesToTable(score);
 
-        clickedNode.classList.add('expanded-row');
+        } else if (clickedNode.classList.contains('expanded-row')) {
 
-        mapScoreCoordinatesToTable(score);
+            clickedNode.nextSibling.remove();
+            clickedNode.nextSibling.remove();
+            clickedNode.nextSibling.remove();
+            clickedNode.classList.remove('expanded-row');
 
+        }
 
-
-    } else if (clickedNode.classList.contains('expanded-row')) {
-
-        clickedNode.nextSibling.remove();
-        clickedNode.nextSibling.remove();
-        clickedNode.nextSibling.remove();
-        clickedNode.classList.remove('expanded-row');
-
+    } catch (error) {
+        console.log(error);
+        return;
     }
 
 }
@@ -78,14 +76,16 @@ function createLevelMapDetailsContainer() {
     levelMapTable.classList.add('level-map-table');
     levelMapContainer.appendChild(levelMapTable);
 
-    for (let r = 0; r < 15; r++) {
+    // row = x-axis, starts at 0
+    // column = y-axis, starts at max cols
+    for (let r = 15; r > 0; r--) {
         let row = document.createElement("tr");
 
 
-        for (let c = 0; c < 30; c++) {
+        for (let c = 30; c > 0; c--) {
             let col = document.createElement("td");
-            col.dataset.x = r;
-            col.dataset.y = c;
+            col.dataset.x = c;
+            col.dataset.y = r;
             col.classList.add("cell-small");
             row.prepend(col);
         }

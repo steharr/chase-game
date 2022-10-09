@@ -8,8 +8,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-//(access = AccessLevel.PRIVATE, force = true)
-
 @Data
 @Entity
 @NoArgsConstructor
