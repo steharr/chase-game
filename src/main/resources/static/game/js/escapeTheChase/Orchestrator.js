@@ -7,7 +7,7 @@ import {
 
 export class Orchestrator {
 
-    constructor(goodGuyName, badGuyName, victoryBlockName, scoreCalculator) {
+    constructor(goodGuyName, badGuyName, victoryBlockName, scoreCalculator, goodGuy) {
         this.gameDetails = {
             inProgress: true,
             victorious: false,
@@ -18,6 +18,7 @@ export class Orchestrator {
         this.badGuyName = badGuyName;
         this.victoryBlockName = victoryBlockName;
         this.scoreCalculator = scoreCalculator;
+        this.goodGuy = goodGuy;
     }
 
     orchestrate(enemies) {
@@ -53,8 +54,11 @@ export class Orchestrator {
         let message;
         if (this.gameDetails.victorious) {
             message = GameMessages.gameWin(this.gameDetails.score);
+            this.goodGuy.route.recordSuccess(this.goodGuy.location);
         } else {
             message = GameMessages.gameLose(this.gameDetails.score);
+            this.goodGuy.route.recordDeath(this.goodGuy.location);
+            this.scoreCalculator.zeroScore();
         }
         this.updateGameLog(message);
 
@@ -65,9 +69,8 @@ export class Orchestrator {
         this.gameDetails.victorious ? container.classList.add('bg-success') : container.classList.add('bg-danger');
         const modalBody = document.getElementById('endGameModalBody');
         modalBody.textContent = this.gameDetails.victorious ? GameSetupConstants.endGameMessages.victory.body : GameSetupConstants.endGameMessages.defeat.body;
-        if (this.gameDetails.victorious) {
-            this.scoreCalculator.postScore();
-        }
+
+        this.scoreCalculator.postScore();
         modal.show();
     }
 

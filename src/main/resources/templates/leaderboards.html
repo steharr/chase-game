@@ -18,15 +18,19 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="leaderboard-row" th:each="score,iter : ${scores}">
+
+                <tr class="leaderboard-row" th:each="score,iter : ${leaderboard.scores}"
+                    id="leaderboard-row-${iter.index}"
+                    th:onclick="playAccordion(this,[[${score}]], [[${leaderboard.gameBoardRows}]],[[${leaderboard.gameBoardColumns}]])">
                     <td>
                         <div class="star"><i class="fa-solid fa-star gold"></i></div>
                     </td>
                     <th th:text="${iter.index + 1}"></th>
-                    <td th:text="${score.username}"></td>
+                    <td th:text="${score.user.username}"></td>
                     <td th:text="${score.score}"></td>
                     <td th:text="${score.date}"></td>
                 </tr>
+
             </tbody>
         </table>
 
@@ -37,6 +41,7 @@
 
 
     <div th:replace="fragments/post-load-js.html :: bootstrap"></div>
+    <script type="text/javascript" th:src="@{components/leaderBoardAccordion.js}"></script>
 </body>
 
 </html>

@@ -24,6 +24,17 @@ export class Route {
         }
         this.route.push(pos);
     }
+
+    recordDeath(pos) {
+        pos.push('skull')
+        this.route.push(pos);
+    }
+
+    recordSuccess(pos) {
+        pos.push('circle-check')
+        this.route.push(pos);
+    }
+
     display() {
         // highlight the starting point with a circle
         $(`div[data-x="${this.route[0][0]}"][data-y="${this.route[0][1]}"]`).css('background-color', this.color).html(`<i class="fa-solid fa-${this.route[0][2]}"></i>`);

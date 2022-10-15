@@ -1,27 +1,27 @@
 import {
-    GameSetupConstants
-} from '../../constants/GameSetupConstants.js';
-import {
-    Ai
-} from './Ai.js';
-import {
     Asset
 } from './Asset.js';
 import {
     Character
 } from './Character.js';
 import {
-    GameAssets
-} from './GameAssets.js';
+    Ai
+} from './Ai.js';
 import {
     Orchestrator
 } from './Orchestrator.js';
 import {
-    ScoreManager
-} from './ScoreManager.js';
+    GameAssets
+} from './GameAssets.js';
 import {
     Timer
 } from './Timer.js';
+import {
+    ScoreManager
+} from './ScoreManager.js';
+import {
+    GameSetupConstants
+} from '../constants/GameSetupConstants.js';
 
 
 const difficulty = GameSetupConstants.difficulties[GAME_SETUP.difficulty];
