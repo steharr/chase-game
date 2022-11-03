@@ -1,9 +1,15 @@
 import {
+    GameEvents
+} from '../../constants/GameEvents.js';
+import {
     GameMessages
 } from '../../constants/GameMessages.js';
 import {
     GameSetupConstants
 } from '../../constants/GameSetupConstants.js';
+import {
+    GameEventsManager
+} from './GameEventsManager.js';
 
 export class Orchestrator {
 
@@ -23,6 +29,14 @@ export class Orchestrator {
         this.baseEnemy = baseEnemy;
         this.baseUser = baseUser;
         this.flag = flag;
+
+        this.eventManager = new GameEventsManager();
+        this.setupGameEvents();
+    }
+
+    setupGameEvents() {
+        this.eventManager.addEvent(GameEvents.USER_CAPTURED_FLAG);
+        this.eventManager.target.addEventListener(GameEvents.USER_CAPTURED_FLAG, () => this.handleFlagGrabByUserEvent());
     }
 
     orchestrate(enemies) {
@@ -41,7 +55,7 @@ export class Orchestrator {
             let cellContents = cell.classList;
 
             if (this.userFlagGrabEvent(cellContents)) {
-                this.handleFlagGrabByUserEvent();
+                this.eventManager.publishEvent(GameEvents.USER_CAPTURED_FLAG);
             }
 
             if (this.userFlagReturnEvent(cellContents)) {
