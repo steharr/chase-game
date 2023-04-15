@@ -9,6 +9,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
+
 @Component
 public class GameSetupDataLoader implements ApplicationRunner {
 
@@ -22,7 +24,8 @@ public class GameSetupDataLoader implements ApplicationRunner {
         addGameSetup();
     }
 
-    private void addGameSetup() {
+    @Transactional
+    public void addGameSetup() {
         GameType gameType = new GameType(1L, "Escape The Chase", 6, true);
         GameType gameType2 = new GameType(2L, "Capture The Flag", 6, false);
         gameTypeRepo.save(gameType);
