@@ -1,5 +1,8 @@
-package chasegame.setup.infrastructure;
+package chasegame.config;
 
+import chasegame.scores.infrastructure.Score;
+import chasegame.setup.infrastructure.GameSetup;
+import chasegame.setup.infrastructure.GameType;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
@@ -13,20 +16,21 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.sql.DataSource;
 import java.util.Objects;
 
-@Profile("PROD")
+@Profile("DEV")
 @Configuration
 @EnableJpaRepositories(
-        basePackageClasses = {GameSetup.class, GameType.class},
+        basePackageClasses = {Score.class, GameSetup.class, GameType.class},
         entityManagerFactoryRef = "h2EntityManagerFactory",
         transactionManagerRef = "h2DatabaseTransactionManager"
+
 )
-public class H2JpaConfig {
+public class H2JpaConfigDev {
 
     @Bean
     public LocalContainerEntityManagerFactoryBean h2EntityManagerFactory(@Qualifier("h2DataSource") DataSource dataSource, EntityManagerFactoryBuilder builder) {
         return builder
                 .dataSource(dataSource)
-                .packages(GameSetup.class, GameType.class)
+                .packages(Score.class, GameSetup.class, GameType.class)
                 .build();
     }
 

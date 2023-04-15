@@ -1,5 +1,6 @@
-package chasegame.scores.infrastructure;
+package chasegame.config;
 
+import chasegame.scores.infrastructure.Score;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;

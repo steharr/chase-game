@@ -1,4 +1,4 @@
-package chasegame.setup.infrastructure;
+package chasegame.config;
 
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -7,9 +7,9 @@ import org.springframework.context.annotation.Profile;
 
 import javax.sql.DataSource;
 
-@Profile("PROD")
+@Profile("DEV")
 @Configuration
-public class H2DataSourceConfig {
+public class H2DataSourceConfigDev {
 
     @Bean
     public DataSource h2DataSource() {

@@ -1,3 +1,5 @@
+import { Spinner } from "./Spinner.js";
+
 export class ScoreManager {
 
     constructor(user, enemies, timer) {
@@ -78,11 +80,22 @@ export class ScoreManager {
             route: this.route,
             user: this.username
         };
-        fetch(this.scoreUrl, {
-            method: "POST",
-            headers: this.headers,
-            body: JSON.stringify(data)
-        }).then(res => console.log(res)).catch(err => console.log(err))
+
+        const spinner = new Spinner("postScore");
+
+        spinner.startSpinner();
+
+        setTimeout(()=>{
+            fetch(this.scoreUrl, {
+                method: "POST",
+                headers: this.headers,
+                body: JSON.stringify(data)
+            }).then(res => {
+                spinner.stopSpinner("Saved", true);
+            }).catch(err => console.log(err))
+
+        },500);
+
     }
 
     getScores() {
@@ -104,4 +117,6 @@ export class ScoreManager {
             this.username = event.target.value;
         })
     }
+
+    
 }

@@ -1,3 +1,10 @@
+html {
+    background-image: url('../media/pngs/yoal-desurmont-jqgsM3B9Fpo-unsplash.jpg');
+}
+body{
+    background-color: transparent !important;
+}
+
 .test {
     background-color: red !important;
 }

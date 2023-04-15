@@ -1,4 +1,4 @@
-package chasegame.scores.infrastructure;
+package chasegame.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
