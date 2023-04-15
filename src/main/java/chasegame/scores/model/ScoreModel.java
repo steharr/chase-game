@@ -1,4 +1,4 @@
-package chasegame.submit;
+package chasegame.scores.model;
 
 
 import lombok.AccessLevel;
@@ -12,10 +12,12 @@ import java.util.List;
 @Data
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @AllArgsConstructor
-public class ScoreSubmit {
+public class ScoreModel {
 
     private Date date;
     private Long Score;
+
+    private String user;
     private List<List<String>> route;
 
 }

@@ -1,10 +1,6 @@
-package chasegame.controllers;
+package chasegame.setup.infrastructure;
 
-import chasegame.data.GameSetupRepository;
-import chasegame.data.GameTypeRepository;
-import chasegame.models.GameBoard;
-import chasegame.models.GameSetup;
-import chasegame.models.GameType;
+import chasegame.setup.model.GameBoard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,7 +44,7 @@ public class GameController {
 
         GameType selectedGameType = gameTypeRepo.findBySelectedGameType();
         model.addAttribute("gameType", selectedGameType);
-        
+
         return "setup";
     }
 

@@ -1,27 +1,11 @@
-import {
-    GameSetupConstants
-} from '../constants/GameSetupConstants.js';
-import {
-    Ai
-} from './Ai.js';
-import {
-    Asset
-} from './Asset.js';
-import {
-    Character
-} from './Character.js';
-import {
-    GameAssets
-} from './GameAssets.js';
-import {
-    Orchestrator
-} from './Orchestrator.js';
-import {
-    ScoreManager
-} from './ScoreManager.js';
-import {
-    Timer
-} from './Timer.js';
+import { GameSetupConstants } from '../constants/GameSetupConstants.js';
+import { Ai } from './Ai.js';
+import { Asset } from './Asset.js';
+import { Character } from './Character.js';
+import { GameAssets } from './GameAssets.js';
+import { Orchestrator } from './Orchestrator.js';
+import { ScoreManager } from './ScoreManager.js';
+import { Timer } from './Timer.js';
 
 
 const difficulty = GameSetupConstants.difficulties[GAME_SETUP.difficulty];
@@ -76,25 +60,21 @@ $(document).on('keydown', function (e) {
             user.move('up');
             orchestrator.orchestrate(enemies);
             break;
-            // down
+        // down
         case "ArrowDown":
             user.move('down');
             orchestrator.orchestrate(enemies);
             break;
-            // left
+        // left
         case "ArrowLeft":
             user.move('left');
             orchestrator.orchestrate(enemies);
             break;
-            // right
+        // right
         case "ArrowRight":
             user.move('right');
             orchestrator.orchestrate(enemies);
             break;
-            // space
-            // case "Space":
-            //     scoreManager.postScore();
-            //     break;
         case "Enter":
             location.reload();
             break;

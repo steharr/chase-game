@@ -1,5 +1,6 @@
-package chasegame.models;
+package chasegame.scores.model;
 
+import chasegame.scores.infrastructure.Score;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

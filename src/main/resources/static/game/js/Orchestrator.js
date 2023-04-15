@@ -19,6 +19,7 @@ export class Orchestrator {
         this.victoryBlockName = victoryBlockName;
         this.scoreCalculator = scoreCalculator;
         this.goodGuy = goodGuy;
+        this.savedScore = false;
     }
 
     orchestrate(enemies) {
@@ -68,9 +69,8 @@ export class Orchestrator {
         const container = document.getElementById('container-modal-header');
         this.gameDetails.victorious ? container.classList.add('bg-success') : container.classList.add('bg-danger');
         const modalBody = document.getElementById('endGameModalBody');
-        modalBody.textContent = this.gameDetails.victorious ? GameSetupConstants.endGameMessages.victory.body : GameSetupConstants.endGameMessages.defeat.body;
-
-        this.scoreCalculator.postScore();
+        modalBody.textContent = this.gameDetails.victorious ? GameMessages.gameWinModal(this.gameDetails.score) : GameSetupConstants.endGameMessages.defeat.body;
+        modalBody.textContent += GameMessages.gameWinModalSavePrompt;
         modal.show();
     }
 
@@ -94,4 +94,5 @@ export class Orchestrator {
         </li>
         `);
     }
+
 }

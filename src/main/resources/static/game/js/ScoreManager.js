@@ -9,6 +9,8 @@ export class ScoreManager {
         this.scoreUrl = window.location.href.match(/^.*\//) + "score";
         this.enemyNearUser = false;
         this.route = this.user.route.route;
+        this.username = "";
+        this.setupSaveMethod();
     }
 
     setupHttpHeaders() {
@@ -73,9 +75,9 @@ export class ScoreManager {
         let data = {
             score: saveScore,
             date: new Date(),
-            route: this.route
+            route: this.route,
+            user: this.username
         };
-        console.table(data);
         fetch(this.scoreUrl, {
             method: "POST",
             headers: this.headers,
@@ -90,5 +92,16 @@ export class ScoreManager {
             headers: this.headers,
         }).then(res => leaderboards = res).catch(err => console.log(err))
         return leaderboards;
+    }
+
+    setupSaveMethod(){
+
+        document.getElementById("postScore").addEventListener("click", ()=>{
+            this.postScore();
+        })
+
+        document.getElementById("postUsername").addEventListener("change",(event)=>{
+            this.username = event.target.value;
+        })
     }
 }
