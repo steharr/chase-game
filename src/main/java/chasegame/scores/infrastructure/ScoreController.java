@@ -1,9 +1,7 @@
-package chasegame.controllers;
+package chasegame.scores.infrastructure;
 
-import chasegame.models.Score;
-import chasegame.service.ScoreService;
-import chasegame.service.UserService;
-import chasegame.submit.ScoreSubmit;
+import chasegame.scores.application.ScoreService;
+import chasegame.scores.model.ScoreModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,10 +18,6 @@ public class ScoreController {
     @Autowired
     private ScoreService scoreService;
 
-    @Autowired
-    private UserService userService;
-
-
     @GetMapping
     public ResponseEntity<List<Score>> getScores() {
         try {
@@ -35,12 +29,8 @@ public class ScoreController {
     }
 
     @PostMapping
-    public void saveScore(@RequestBody ScoreSubmit submit) {
-        try {
-            scoreService.submitScore(submit);
-        } catch (Exception e) {
-            log.error("ScoreController::saveScore" + e.getMessage());
-        }
+    public void saveScore(@RequestBody ScoreModel submit) {
+        scoreService.submitScore(submit);
     }
 
 }

@@ -4,44 +4,44 @@
 <div th:replace="fragments/head.html :: base"></div>
 
 <body>
-    <div class="container pt-5">
-        <h1 class="text-center">LEADERBOARDS</h1>
+<div class="container pt-5">
+    <h1 class="text-center">LEADERBOARDS</h1>
 
-        <table class="table">
-            <thead>
-                <tr class="leaderboard-header">
-                    <th scope="col"></th>
-                    <th scope="col">#</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Score</th>
-                    <th scope="col">Date</th>
-                </tr>
-            </thead>
-            <tbody>
+    <table class="table">
+        <thead>
+        <tr class="leaderboard-header">
+            <th scope="col"></th>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">Score</th>
+            <th scope="col">Date</th>
+        </tr>
+        </thead>
+        <tbody>
 
-                <tr class="leaderboard-row" th:each="score,iter : ${leaderboard.scores}"
-                    id="leaderboard-row-${iter.index}"
-                    th:onclick="playAccordion(this,[[${score}]], [[${leaderboard.gameBoardRows}]],[[${leaderboard.gameBoardColumns}]])">
-                    <td>
-                        <div class="star"><i class="fa-solid fa-star gold"></i></div>
-                    </td>
-                    <th th:text="${iter.index + 1}"></th>
-                    <td th:text="${score.user.username}"></td>
-                    <td th:text="${score.score}"></td>
-                    <td th:text="${score.date}"></td>
-                </tr>
+        <tr class="leaderboard-row" th:each="score,iter : ${leaderboard.scores}"
+            id="leaderboard-row-${iter.index}"
+            th:onclick="playAccordion(this,[[${score}]], [[${leaderboard.gameBoardRows}]],[[${leaderboard.gameBoardColumns}]])">
+            <td>
+                <div class="star"><i class="fa-solid fa-star gold"></i></div>
+            </td>
+            <th th:text="${iter.index + 1}"></th>
+            <td th:text="${score.user}"></td>
+            <td th:text="${score.score}"></td>
+            <td th:text="${score.date}"></td>
+        </tr>
 
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 
-        <div>
-            <a th:href="@{/game}" type="button" class="btn btn-primary">Back to Game</a>
-        </div>
+    <div>
+        <a th:href="@{/game}" type="button" class="btn btn-primary">Back to Game</a>
     </div>
+</div>
 
 
-    <div th:replace="fragments/post-load-js.html :: bootstrap"></div>
-    <script type="text/javascript" th:src="@{components/leaderBoardAccordion.js}"></script>
+<div th:replace="fragments/post-load-js.html :: bootstrap"></div>
+<script type="text/javascript" th:src="@{components/leaderBoardAccordion.js}"></script>
 </body>
 
 </html>
