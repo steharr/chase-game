@@ -1,9 +1,5 @@
-import {
-    GameMessages
-} from '../constants/GameMessages.js';
-import {
-    GameSetupConstants
-} from '../constants/GameSetupConstants.js';
+import {GameMessages} from '../constants/GameMessages.js';
+import {GameSetupConstants} from '../constants/GameSetupConstants.js';
 
 export class Orchestrator {
 
@@ -70,7 +66,12 @@ export class Orchestrator {
         this.gameDetails.victorious ? container.classList.add('bg-success') : container.classList.add('bg-danger');
         const modalBody = document.getElementById('endGameModalBody');
         modalBody.textContent = this.gameDetails.victorious ? GameMessages.gameWinModal(this.gameDetails.score) : GameSetupConstants.endGameMessages.defeat.body;
-        modalBody.textContent += GameMessages.gameWinModalSavePrompt;
+
+        if (this.gameDetails.victorious) {
+            const modalBodyPrompt = document.getElementById('endGameModalBodySaveScorePrompt');
+            modalBodyPrompt.textContent = GameMessages.gameWinModalSavePrompt;
+        }
+
         modal.show();
     }
 
