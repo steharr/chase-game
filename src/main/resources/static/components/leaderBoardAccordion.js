@@ -61,7 +61,7 @@ function mapScoreCoordinatesToTable(score) {
 
     score.coordinates.forEach((coordinate, index) => {
 
-        let cell = document.querySelector(`td[data-x="${coordinate[0]}"][data-y="${coordinate[1]}"]`);
+        let cell = document.querySelector(`td[data-x="${coordinate[1]}"][data-y="${coordinate[0]}"]`);
 
         if (null !== cell) {
 
