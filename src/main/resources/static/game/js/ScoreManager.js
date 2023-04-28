@@ -1,4 +1,4 @@
-import { Spinner } from "./Spinner.js";
+import {Spinner} from "./Spinner.js";
 
 export class ScoreManager {
 
@@ -73,6 +73,7 @@ export class ScoreManager {
     }
 
     postScore() {
+
         let saveScore = this.total;
         let data = {
             score: saveScore,
@@ -85,16 +86,17 @@ export class ScoreManager {
 
         spinner.startSpinner();
 
-        setTimeout(()=>{
+        setTimeout(() => {
             fetch(this.scoreUrl, {
                 method: "POST",
                 headers: this.headers,
                 body: JSON.stringify(data)
             }).then(res => {
                 spinner.stopSpinner("Saved", true);
+                this.hideFormError();
             }).catch(err => console.log(err))
 
-        },500);
+        }, 500);
 
     }
 
@@ -107,16 +109,36 @@ export class ScoreManager {
         return leaderboards;
     }
 
-    setupSaveMethod(){
+    setupSaveMethod() {
 
-        document.getElementById("postScore").addEventListener("click", ()=>{
-            this.postScore();
+        document.getElementById("postScore").addEventListener("click", () => {
+            if (this.username !== "") {
+                this.postScore();
+            } else {
+                this.showFormError();
+            }
         })
 
-        document.getElementById("postUsername").addEventListener("change",(event)=>{
+        document.getElementById("postUsername").addEventListener("change", (event) => {
             this.username = event.target.value;
         })
     }
 
-    
+    showFormError() {
+        const errorBadge = document.getElementById("errorScore");
+
+        if (errorBadge.classList.contains("d-none")) {
+            errorBadge.classList.remove("d-none");
+        }
+    }
+
+    hideFormError() {
+        const errorBadge = document.getElementById("errorScore");
+
+        if (!errorBadge.classList.contains("d-none")) {
+            errorBadge.classList.add("d-none");
+        }
+    }
+
+
 }

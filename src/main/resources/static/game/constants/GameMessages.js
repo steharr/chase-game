@@ -13,8 +13,8 @@ function template(strings, ...keys) {
 
 export class GameMessages {
     static enemyClose = "Enemy is close!! Watch out ...";
-    static gameWin = template `You Won!!! Well done ... your score was ${0}!`;
-    static gameLose = template `You Lost!!! Better luck next time ... your score was ${0}!`;
-    static gameWinModal = template `Well done you won!! ... your score was ${0}!`
+    static gameWin = template`You Won!!! Well done ... your score was ${0}!`;
+    static gameLose = template`You Lost!!! Better luck next time ... your score was ${0}!`;
+    static gameWinModal = template`Well done you won!! ... your score was ${0}!`
     static gameWinModalSavePrompt = `Select your username to save score below:`
 }

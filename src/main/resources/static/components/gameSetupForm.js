@@ -15,19 +15,41 @@ function postGameSetup() {
         obstacles: chosenObstacles,
     };
 
+    if (data.enemies == 0 || data.difficulty == 0) {
+        this.showFormError();
+        return;
+    }
+
     const spinner = new Spinner("postSetup");
     spinner.startSpinner();
-    setTimeout(()=>{
+    setTimeout(() => {
         fetch(postUrl, {
             method: "POST",
             headers: getHttpHeaders(),
             body: JSON.stringify(data)
         }).then(res => {
             spinner.stopSpinner("Saved")
+            this.hideFormError();
         }).catch(err => console.log(err));
     }, 500);
 
 };
+
+function showFormError() {
+    const errorBadge = document.getElementById("errorSetup");
+
+    if (errorBadge.classList.contains("d-none")) {
+        errorBadge.classList.remove("d-none");
+    }
+}
+
+function hideFormError() {
+    const errorBadge = document.getElementById("errorSetup");
+
+    if (!errorBadge.classList.contains("d-none")) {
+        errorBadge.classList.add("d-none");
+    }
+}
 
 function getHttpHeaders() {
     let token = $("meta[name='_csrf']").attr("content");
@@ -39,8 +61,8 @@ function getHttpHeaders() {
     }
 }
 
- class Spinner {
-    constructor(elementId){
+class Spinner {
+    constructor(elementId) {
         this.id = elementId;
         this.spinnerDisplayed = false;
         this.element = document.getElementById(this.id);
@@ -51,21 +73,21 @@ function getHttpHeaders() {
         `
     }
 
-    startSpinner(){
+    startSpinner() {
         this.element.innerHTML = this.SPINNER_HTML;
         this.spinnerDisplayed = true;
     }
 
-    stopSpinner(message="", disableBtn=false){
+    stopSpinner(message = "", disableBtn = false) {
         this.element.innerHTML = message;
         this.spinnerDisplayed = false;
-        if (disableBtn){
+        if (disableBtn) {
             this.element.disabled = true;
         }
     }
 
-    toggleSpinner(){
-        this.spinnerDisplayed ? this.stopSpinner(): this.startSpinner();
+    toggleSpinner() {
+        this.spinnerDisplayed ? this.stopSpinner() : this.startSpinner();
         this.spinnerDisplayed = !this.spinnerDisplayed;
     }
 

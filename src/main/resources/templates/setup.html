@@ -6,120 +6,123 @@
 
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <h1 class="mx-auto" style="width: 20%">Game Setup</h1>
+    <h1 class="mx-auto" style="width: 20%">Game Setup</h1>
 
-        <div class="card base-gradient-style mx-auto" style="width: 60%">
-            <div class="card-body">
+    <div class="card base-gradient-style mx-auto" style="width: 60%">
+        <div class="card-body">
 
-                <!-- Mode -->
-                <div class="row">
-                    <div class="col-4">
-                        <p class="game-setup-label">Mode:</p>
-                    </div>
-                    <div class="col-8">
-                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                            <input type="radio" class="btn-check" name="mode" value="chase" id="mode-chase"
-                                autocomplete="off" checked>
-                            <label class="btn btn-outline-primary" for="mode-chase">Escape the Chase</label>
+            <!-- Mode -->
+            <div class="row">
+                <div class="col-4">
+                    <p class="game-setup-label">Mode:</p>
+                </div>
+                <div class="col-8">
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="mode" value="chase" id="mode-chase"
+                               autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="mode-chase">Escape the Chase</label>
 
-                            <input type="radio" class="btn-check" name="mode" value="flag" id="mode-flag"
-                                autocomplete="off" disabled="true">
-                            <label class="btn btn-outline-primary" for="mode-flag">Capture the Flag</label>
-                        </div>
+                        <input type="radio" class="btn-check" name="mode" value="flag" id="mode-flag"
+                               autocomplete="off" disabled="true">
+                        <label class="btn btn-outline-primary" for="mode-flag">Capture the Flag</label>
                     </div>
                 </div>
+            </div>
 
-                <!-- Enemies -->
-                <div class="row">
-                    <div class="col-4">
-                        <p class="game-setup-label">Enemies:</p>
-                    </div>
-                    <div class="col-8 d-flex justify-content-between">
+            <!-- Enemies -->
+            <div class="row">
+                <div class="col-4">
+                    <p class="game-setup-label">Enemies:</p>
+                </div>
+                <div class="col-8 d-flex justify-content-between">
 
-                        <div class="arrow">
-                            <button class="btn btn-secondary" type="button"
+                    <div class="arrow">
+                        <button class="btn btn-secondary" type="button"
                                 onclick="moveVisualSelect(0,'option-enemy','left')">
-                                <i class="fa-solid fa-caret-left"></i>
-                            </button>
-                        </div>
+                            <i class="fa-solid fa-caret-left"></i>
+                        </button>
+                    </div>
 
-                        <div id="visual-select-options-0" name="enemies">
-                        </div>
+                    <div id="visual-select-options-0" name="enemies">
+                    </div>
 
-                        <div class="arrow">
-                            <button class="btn btn-secondary" type="button"
+                    <div class="arrow">
+                        <button class="btn btn-secondary" type="button"
                                 onclick="moveVisualSelect(0,'option-enemy','right')">
-                                <i class="fa-solid fa-caret-right"></i>
-                            </button>
-                        </div>
-
+                            <i class="fa-solid fa-caret-right"></i>
+                        </button>
                     </div>
+
                 </div>
+            </div>
 
-                <!-- Difficulty -->
-                <div class="row">
-                    <div class="col-4">
-                        <p class="game-setup-label">Difficulty:</p>
-                    </div>
-                    <div class="col-8 d-flex justify-content-between">
+            <!-- Difficulty -->
+            <div class="row">
+                <div class="col-4">
+                    <p class="game-setup-label">Difficulty:</p>
+                </div>
+                <div class="col-8 d-flex justify-content-between">
 
-                        <div class="arrow">
-                            <button class="btn btn-secondary" type="button"
+                    <div class="arrow">
+                        <button class="btn btn-secondary" type="button"
                                 onclick="moveVisualSelect(1,'option-difficulty','left')">
-                                <i class="fa-solid fa-caret-left"></i>
-                            </button>
-                        </div>
+                            <i class="fa-solid fa-caret-left"></i>
+                        </button>
+                    </div>
 
-                        <div id="visual-select-options-1" name="difficulty">
-                        </div>
+                    <div id="visual-select-options-1" name="difficulty">
+                    </div>
 
-                        <div class="arrow">
-                            <button class="btn btn-secondary" type="button"
+                    <div class="arrow">
+                        <button class="btn btn-secondary" type="button"
                                 onclick="moveVisualSelect(1,'option-difficulty','right')">
-                                <i class="fa-solid fa-caret-right"></i>
-                            </button>
-                        </div>
-
+                            <i class="fa-solid fa-caret-right"></i>
+                        </button>
                     </div>
+
                 </div>
+            </div>
 
-                <!-- Difficulty -->
-                <div class="row">
-                    <div class="col-4">
-                        <p class="game-setup-label">Obstacles:</p>
-                    </div>
-                    <div class="col-8 d-flex justify-content-around">
+            <!-- Difficulty -->
+            <div class="row">
+                <div class="col-4">
+                    <p class="game-setup-label">Obstacles:</p>
+                </div>
+                <div class="col-8 d-flex justify-content-around">
 
-                        <select class="form-select" aria-label="Default select example" id="obstacles"
+                    <select class="form-select" aria-label="Default select example" id="obstacles"
                             style="width: 60%">
-                            <option value="little" selected>Little</option>
-                            <option value="many">Many</option>
-                            <option value="lots">Lots</option>
-                        </select>
+                        <option value="little" selected>Little</option>
+                        <option value="many">Many</option>
+                        <option value="lots">Lots</option>
+                    </select>
 
-                    </div>
                 </div>
+            </div>
 
 
-                <a th:href="@{/}" type="button" class="btn btn-secondary">Main Menu</a>
-                <button id="postSetup" type="submit" class="btn btn-primary" onclick="postGameSetup()">Confirm</button>
+            <a th:href="@{/}" type="button" class="btn btn-secondary">Main Menu</a>
+            <button id="postSetup" type="submit" class="btn btn-primary" onclick="postGameSetup()">Confirm</button>
+            <div id="errorSetup"
+                 class="badge d-none rounded-pill text-bg-danger mt-3">Please enter valid difficulty/enemies!
             </div>
         </div>
-
     </div>
 
-    <!-- Boostrap JS -->
-    <div th:replace="fragments/post-load-js.html :: bootstrap"></div>
+</div>
 
-    <!-- injected variables -->
-    <script th:inline="javascript">
-        const GAME_TYPE = /*[[${gameType}]]*/ {};
-    </script>
+<!-- Boostrap JS -->
+<div th:replace="fragments/post-load-js.html :: bootstrap"></div>
 
-    <script type="text/javascript" th:src="@{components/visualSelect.js}"></script>
-    <script type="text/javascript" th:src="@{components/gameSetupForm.js}"></script>
+<!-- injected variables -->
+<script th:inline="javascript">
+    const GAME_TYPE = /*[[${gameType}]]*/ {};
+</script>
+
+<script type="text/javascript" th:src="@{components/visualSelect.js}"></script>
+<script type="text/javascript" th:src="@{components/gameSetupForm.js}"></script>
 </body>
 
 </html>
