@@ -55,27 +55,33 @@
                 <h5 class="end-game modal-title" id="endGameModalTitle"></h5>
             </div>
             <div class="end-game modal-body">
-                <div class=" row align-items-center  justify-content-center">
-                    <div class="col-12 w-50" id="endGameModalBody">
+
+                <div class="d-none" id="successMessage">
+                    <div class="text-center">
+                        YOUR FINAL SCORE:
+                        <span id="scoreBox"></span>
+                    </div>
+
+                    <div class="row align-items-center justify-content-center">
+                        <div class="d-flex flex-column align-items-center justify-content-center">
+                            <div class="w-50 text-center" id="endGameModalBodySaveScorePrompt">
+                            </div>
+                            <div class="w-50">
+                                <input type="text" class="form-control" placeholder="Enter Username"
+                                       aria-label="Username"
+                                       id="postUsername">
+                            </div>
+                            <div class="mt-3">
+                                <button id="postScore" type="button" class="btn btn-success">Save Score!</button>
+                            </div>
+                            <div id="errorScore"
+                                 class="badge d-none rounded-pill text-bg-danger mt-3">Please enter your username!
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="row align-items-center justify-content-center">
-                    <div class="d-flex flex-column align-items-center justify-content-center">
-                        <div class="w-50 text-center" id="endGameModalBodySaveScorePrompt">
-                        </div>
-                        <div class="w-50">
-                            <input type="text" class="form-control" placeholder="Enter Username"
-                                   aria-label="Username"
-                                   id="postUsername">
-                        </div>
-                        <div class="mt-3">
-                            <button id="postScore" type="button" class="btn btn-success">Save Score!</button>
-                        </div>
-                        <div id="errorScore"
-                             class="badge d-none rounded-pill text-bg-danger mt-3">Please enter your username!
-                        </div>
-                    </div>
+                <div class="d-none" id="failureMessage">
+                    Unlucky! How about you try again....
                 </div>
 
             </div>

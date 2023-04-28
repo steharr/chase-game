@@ -15,7 +15,7 @@ export class Orchestrator {
         this.victoryBlockName = victoryBlockName;
         this.scoreCalculator = scoreCalculator;
         this.goodGuy = goodGuy;
-        this.savedScore = false;
+        this.gameplayPaused = false;
     }
 
     orchestrate(enemies) {
@@ -49,6 +49,7 @@ export class Orchestrator {
 
     finishGame() {
         let message;
+        this.gameplayPaused = true;
         if (this.gameDetails.victorious) {
             message = GameMessages.gameWin(this.gameDetails.score);
             this.goodGuy.route.recordSuccess(this.goodGuy.location);
@@ -62,16 +63,18 @@ export class Orchestrator {
         const modal = new bootstrap.Modal('#endGameModal');
         const modalTitle = document.getElementById('endGameModalTitle');
         modalTitle.textContent = this.gameDetails.victorious ? GameSetupConstants.endGameMessages.victory.title : GameSetupConstants.endGameMessages.defeat.title;
+
+
         const container = document.getElementById('container-modal-header');
         this.gameDetails.victorious ? container.classList.add('bg-success') : container.classList.add('bg-danger');
-        const modalBody = document.getElementById('endGameModalBody');
-        modalBody.textContent = this.gameDetails.victorious ? GameMessages.gameWinModal(this.gameDetails.score) : GameSetupConstants.endGameMessages.defeat.body;
+        const scoreBox = document.getElementById('scoreBox');
+        scoreBox.innerText = this.gameDetails.score;
 
         if (this.gameDetails.victorious) {
             const modalBodyPrompt = document.getElementById('endGameModalBodySaveScorePrompt');
             modalBodyPrompt.textContent = GameMessages.gameWinModalSavePrompt;
         }
-
+        this.displayModalMessage(this.gameDetails.victorious ? "successMessage" : "failureMessage");
         modal.show();
     }
 
@@ -94,6 +97,14 @@ export class Orchestrator {
 	    </div>
         </li>
         `);
+    }
+
+    displayModalMessage(id) {
+        const modalBox = document.getElementById(id);
+
+        if (modalBox.classList.contains("d-none")) {
+            modalBox.classList.remove("d-none");
+        }
     }
 
 }

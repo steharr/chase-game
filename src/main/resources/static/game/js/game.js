@@ -1,11 +1,11 @@
-import { GameSetupConstants } from '../constants/GameSetupConstants.js';
-import { Ai } from './Ai.js';
-import { Asset } from './Asset.js';
-import { Character } from './Character.js';
-import { GameAssets } from './GameAssets.js';
-import { Orchestrator } from './Orchestrator.js';
-import { ScoreManager } from './ScoreManager.js';
-import { Timer } from './Timer.js';
+import {GameSetupConstants} from '../constants/GameSetupConstants.js';
+import {Ai} from './Ai.js';
+import {Asset} from './Asset.js';
+import {Character} from './Character.js';
+import {GameAssets} from './GameAssets.js';
+import {Orchestrator} from './Orchestrator.js';
+import {ScoreManager} from './ScoreManager.js';
+import {Timer} from './Timer.js';
 
 
 const difficulty = GameSetupConstants.difficulties[GAME_SETUP.difficulty];
@@ -51,33 +51,41 @@ $(document).ready(function () {
     // *** Timer ***
     timer.initialize();
 });
-
+window.addEventListener("keydown", function (e) {
+    if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.code) > -1) {
+        e.preventDefault();
+    }
+}, false);
 $(document).on('keydown', function (e) {
     let key = e.code;
-    switch (key) {
-        // up
-        case "ArrowUp":
-            user.move('up');
-            orchestrator.orchestrate(enemies);
-            break;
-        // down
-        case "ArrowDown":
-            user.move('down');
-            orchestrator.orchestrate(enemies);
-            break;
-        // left
-        case "ArrowLeft":
-            user.move('left');
-            orchestrator.orchestrate(enemies);
-            break;
-        // right
-        case "ArrowRight":
-            user.move('right');
-            orchestrator.orchestrate(enemies);
-            break;
-        case "Enter":
-            location.reload();
-            break;
+    if (!orchestrator.gameplayPaused) {
+
+        switch (key) {
+            // up
+            case "ArrowUp":
+                user.move('up');
+                orchestrator.orchestrate(enemies);
+                break;
+            // down
+            case "ArrowDown":
+                user.move('down');
+                orchestrator.orchestrate(enemies);
+                break;
+            // left
+            case "ArrowLeft":
+                user.move('left');
+                orchestrator.orchestrate(enemies);
+                break;
+            // right
+            case "ArrowRight":
+                user.move('right');
+                orchestrator.orchestrate(enemies);
+                break;
+            case "Enter":
+                location.reload();
+                break;
+        }
+        
     }
 
 });
