@@ -22,42 +22,16 @@ let gameAssets = new GameAssets();
 let scoreManager;
 let orchestrator;
 
-$(document).ready(function () {
-
-    // *** Level ***
-    generateObstacles(obstacles);
-
-    // *** User ***
-    user.id = gameAssets.generateUniqueAssetId();
-    user.spawn([GameSetupConstants.botLeftCord.x, GameSetupConstants.botLeftCord.y]);
-
-    // *** Enemy ***
-    let y = GameSetupConstants.topRightCord.y;
-    let x = GameSetupConstants.topRightCord.x;
-    for (let e of enemies) {
-        e.id = gameAssets.generateUniqueAssetId();
-        e.spawn([x, y]);
-        e.target = user.id;
-        y--;
-    }
-
-    // *** Goal ***
-    cheese.id = gameAssets.generateUniqueAssetId();
-
-    // *** Game Setup ***
-    scoreManager = new ScoreManager(user, enemies, timer);
-    orchestrator = new Orchestrator(user.name, enemies[0].name, cheese.name, scoreManager, user);
-
-    // *** Timer ***
-    timer.initialize();
-
-    generateEndGoal();
-});
 window.addEventListener("keydown", function (e) {
     if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.code) > -1) {
         e.preventDefault();
     }
 }, false);
+
+$(document).ready(function () {
+    startGame();
+});
+
 $(document).on('keydown', function (e) {
     let key = e.code;
     if (!orchestrator.gameplayPaused) {
@@ -90,6 +64,11 @@ $(document).on('keydown', function (e) {
 
     }
 
+});
+document.getElementById("restartGame").addEventListener("click", () => {
+    $('#endGameModal').modal('hide');
+    refreshGameBoard();
+    startGame();
 });
 
 function generateObstacles(desiredObstacles) {
@@ -166,11 +145,51 @@ function generateEndGoal() {
             const cell = $(`div[data-x="${randomCell.x}"][data-y="${randomCell.y}"]`);
 
             if (!cell[0].classList.contains('obstacle')) {
-                console.dir(cell);
                 safeLocationFound = true;
             }
         }
     }
-    console.dir(randomCell);
     cheese.spawn([randomCell.x, randomCell.y]);
+}
+
+function startGame() {
+    // *** Level ***
+    generateObstacles(obstacles);
+
+    // *** User ***
+    user.id = gameAssets.generateUniqueAssetId();
+    user.spawn([GameSetupConstants.botLeftCord.x, GameSetupConstants.botLeftCord.y]);
+
+    // *** Enemy ***
+    let y = GameSetupConstants.topRightCord.y;
+    let x = GameSetupConstants.topRightCord.x;
+    for (let e of enemies) {
+        e.id = gameAssets.generateUniqueAssetId();
+        e.spawn([x, y]);
+        e.target = user.id;
+        y--;
+    }
+
+    // *** Goal ***
+    cheese.id = gameAssets.generateUniqueAssetId();
+
+    // *** Game Setup ***
+    scoreManager = new ScoreManager(user, enemies, timer);
+    orchestrator = new Orchestrator(user.name, enemies[0].name, cheese.name, scoreManager, user);
+
+    // *** Timer ***
+    timer.initialize();
+
+    generateEndGoal();
+}
+
+function refreshGameBoard() {
+    const cells = document.getElementsByClassName("cell");
+
+    Array.from(cells).forEach(cell => {
+        cell.className = "";
+        cell.removeAttribute("id");
+        cell.classList.add("bo");
+        cell.classList.add("cell");
+    })
 }
