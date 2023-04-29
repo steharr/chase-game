@@ -15,6 +15,7 @@ const enemies = generateEnemies(GAME_SETUP.enemies);
 let user = new Character('user', 'blue');
 
 let cheese = new Asset('cheese', 'yellow');
+cheese.hideBackgroundColor();
 let timer = new Timer("2:00");
 let gameAssets = new GameAssets();
 
@@ -85,7 +86,7 @@ $(document).on('keydown', function (e) {
                 location.reload();
                 break;
         }
-        
+
     }
 
 });
