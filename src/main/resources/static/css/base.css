@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 html {
     background-image: url('../media/pngs/yoal-desurmont-jqgsM3B9Fpo-unsplash.jpg');
 }
-body{
+
+body {
     background-color: transparent !important;
+    font-family: 'Press Start 2P', cursive !important;
 }
 
 .test {
@@ -19,8 +23,6 @@ body{
     height: 2rem;
     overflow: hidden;
     text-align: center;
-    line-height: 2;
-    text-align: center;
     background-color: #a2d9a0;
     background-image: url("../media/pngs/grass.png");
     background-position: center;
@@ -28,8 +30,9 @@ body{
 }
 
 .cheese {
-    background-color: #FDE74C;
-    background-image: none !important;
+    background-image: url("../media/gifs/star.gif");
+    background-position: center;
+    background-size: cover;
 }
 
 .obstacle {
@@ -109,10 +112,12 @@ body{
     color: #404E4D;
     font-weight: bolder;
     border-radius: 3px;
-    width: 20%;
     margin: auto;
     font-size: 1.25rem;
+}
 
+.text-bright {
+    color: #f7f7f7;
 }
 
 .rock-1 {
@@ -132,16 +137,17 @@ body{
 }
 
 .game-container {
-    display: flex;
-    justify-content: center;
     margin-top: 2.5rem;
 }
 
 .game-board {
     background-color: #a4d188;
-    padding: 1rem;
     border: .5rem solid #333333;
     border-radius: 10px;
+}
+
+.game-board-row {
+    display: flex !important;
 }
 
 .gold {

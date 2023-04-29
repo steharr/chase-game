@@ -6,23 +6,26 @@
 
 <body>
 
-    <div class="container">
-        <div class="row">
-            <div class="col s12 base-gradient-style">
-                <h1>Chase Game</h1>
-            </div>
-            <div class="row">
-                <div class="col s6 center-align base-gradient-style">
-                    <a class="waves-effect waves-light btn" th:href="@{/game}">Start Game</a>
-                </div>
-                <div class="col s6 center-align base-gradient-style">
-                    <a class="waves-effect waves-light btn" th:href="@{/setup}">Setup</a>
-                </div>
-            </div>
+<div class="container">
+    <div class="mt-5  py-5 row justify-content-center base-gradient-style">
+        <div class=" col-6 text-center">
+            <h1>Chase Game</h1>
+        </div>
+    </div>
+    <div class="row  justify-content-center">
+        <div class="col-6  text-center  base-gradient-style">
+            <a class="btn" th:href="@{/game}">Start Game</a>
+        </div>
+    </div>
+    <div class="row  justify-content-center">
+        <div class="col-6  text-center  base-gradient-style">
+            <a class="btn" th:href="@{/setup}">Game Setup</a>
         </div>
     </div>
 
-    <div th:replace="fragments/post-load-js.html :: bootstrap"></div>
+</div>
+
+<div th:replace="fragments/post-load-js.html :: bootstrap"></div>
 </body>
 
 </html>
