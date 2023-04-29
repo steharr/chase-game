@@ -16,6 +16,7 @@ export class Orchestrator {
         this.scoreCalculator = scoreCalculator;
         this.goodGuy = goodGuy;
         this.gameplayPaused = false;
+        this.refreshModalMessages();
     }
 
     orchestrate(enemies) {
@@ -105,6 +106,17 @@ export class Orchestrator {
         if (modalBox.classList.contains("d-none")) {
             modalBox.classList.remove("d-none");
         }
+    }
+
+    refreshModalMessages() {
+        const succesMessage = document.getElementById('successMessage');
+        const failureMessage = document.getElementById('failureMessage');
+
+        [succesMessage, failureMessage].forEach(m => {
+            if (!m.classList.contains("d-none")) {
+                m.classList.add("d-none");
+            }
+        })
     }
 
 }
