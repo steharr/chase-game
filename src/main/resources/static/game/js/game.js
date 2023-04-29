@@ -43,7 +43,6 @@ $(document).ready(function () {
 
     // *** Goal ***
     cheese.id = gameAssets.generateUniqueAssetId();
-    cheese.spawn([10, 10]);
 
     // *** Game Setup ***
     scoreManager = new ScoreManager(user, enemies, timer);
@@ -51,6 +50,8 @@ $(document).ready(function () {
 
     // *** Timer ***
     timer.initialize();
+
+    generateEndGoal();
 });
 window.addEventListener("keydown", function (e) {
     if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.code) > -1) {
@@ -152,4 +153,24 @@ function generateRandomNumber(min, max) {
     }
 
     return random;
+}
+
+function generateEndGoal() {
+
+    let safeLocationFound = false;
+    let randomCell;
+    while (!safeLocationFound) {
+        randomCell = generateRandomCellReference();
+
+        if (randomCell.x < COLS && randomCell.x > 0 && randomCell.y < ROWS && randomCell.y > 0) {
+            const cell = $(`div[data-x="${randomCell.x}"][data-y="${randomCell.y}"]`);
+
+            if (!cell[0].classList.contains('obstacle')) {
+                console.dir(cell);
+                safeLocationFound = true;
+            }
+        }
+    }
+    console.dir(randomCell);
+    cheese.spawn([randomCell.x, randomCell.y]);
 }
