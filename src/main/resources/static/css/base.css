@@ -117,7 +117,7 @@ body {
 }
 
 .text-bright {
-    color: #f7f7f7;
+    color: #f7f7f7 !important;
 }
 
 .rock-1 {
